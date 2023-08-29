@@ -26,6 +26,16 @@ export const CheckPostAllPases= [
     .notEmpty().withMessage("El campo prices es Obligatorio")
     .isNumeric().withMessage("El campo prices debe ser de tipo Int")
     .matches(/^[0-9,.#@\\s-]+$/).withMessage("Solo admite numeros"),
+
+    check("horario")
+    .notEmpty().withMessage("El campo schedule es Obligatorio")
+    .isNumeric().withMessage("El campo schedule debe ser de tipo Int")
+    .matches(/^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$/).withMessage("Solo admite numeros"),
+
+    check("dias")
+    .notEmpty().withMessage("El campo days_opening es Obligatorio")
+    .isString().withMessage("El campo days_opening debe ser de tipo String")
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
 ]
 
 

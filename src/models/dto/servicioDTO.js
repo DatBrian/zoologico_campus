@@ -31,6 +31,16 @@ export const CheckPostAllServicios= [
     .notEmpty().withMessage("El campo zone es Obligatorio")
     .isString().withMessage("El campo zone debe ser de tipo String")
     .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+
+    check("horario_apertura")
+    .notEmpty().withMessage("El campo opening_hours es Obligatorio")
+    .isString().withMessage("El campo opening_hours debe ser de tipo String")
+    .matches(/^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$/).withMessage("Solo admite letras"),
+
+    check("horario_cierre")
+    .notEmpty().withMessage("El campo closing_time es Obligatorio")
+    .isString().withMessage("El campo closing_time debe ser de tipo String")
+    .matches(/^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$/).withMessage("Solo admite letras"),
 ]
 
 

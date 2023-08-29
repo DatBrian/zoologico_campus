@@ -36,6 +36,11 @@ export const CheckPostAllEmployees= [
     .notEmpty().withMessage("El campo zone es Obligatorio")
     .isString().withMessage("El campo zone debe ser de tipo String")
     .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+
+    check("jornada")
+    .notEmpty().withMessage("El campo schedule es Obligatorio")
+    .isString().withMessage("El campo schedule debe ser de tipo String")
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
 ]
 
 
