@@ -69,7 +69,7 @@ db.createCollection("empleados", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["nombre_completo", "asignacion", "direccion", "email","telefono", "area_asignada", "zona",  "jornada"],
+            required: ["nombre_completo", "cargo", "direccion", "email","telefono", "area_asignada", "zona",  "jornada"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -79,10 +79,10 @@ db.createCollection("empleados", {
                     pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
                     description: "Debe informar el campo complete_name y este debe ser un string"
                 },
-                asignacion: {
+                cargo: {
                     bsonType: "string",
                     pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                    description: "Debe informar el campo asignationTask y este debe ser un string"
+                    description: "Debe informar el campo assigned_position y este debe ser un string"
                 },
                 direccion: {
                     bsonType: "string",
