@@ -69,7 +69,7 @@ db.createCollection("empleados", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["nombre_completo", "asignacion", "direccion", "email","telefono", "area_asignada", "zona"],
+            required: ["nombre_completo", "asignacion", "direccion", "email","telefono", "area_asignada", "zona",  "jornada"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -108,6 +108,11 @@ db.createCollection("empleados", {
                     bsonType: "string",
                     pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
                     description: "Debe informar el campo zone y este debe ser un string"
+                },
+                jornada: {
+                    bsonType: "string",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    description: "Debe informar el campo schedule y este debe ser un string"
                 }
             }
         }
@@ -121,7 +126,7 @@ db.createCollection("eventos", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["fecha", "estado", "area", "descripcion"],
+            required: ["fecha", "estado", "area", "descripcion","hora_inicio","hora_finalizacion"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -145,6 +150,16 @@ db.createCollection("eventos", {
                     bsonType: "string",
                     pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
                     description: "Debe informar el campo description_info y este debe ser un string"
+                },
+                hora_inicio: {
+                    bsonType: "string",
+                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                    description: "Debe informar el campo start_time y este debe ser un string"
+                },
+                hora_finalizacion: {
+                    bsonType: "string",
+                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                    description: "Debe informar el campo end_time y este debe ser un string"
                 }
             }
         }
@@ -158,7 +173,7 @@ db.createCollection("pase", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["nombre", "tipo", "descripcion", "zonas","precios"],
+            required: ["nombre", "tipo", "descripcion", "zonas","precios","horario", "dias"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -189,6 +204,16 @@ db.createCollection("pase", {
                     maximum: 9999999,
                     pattern: "^[0-9,.#@\\s-]+$",
                     description: "El campo prices debe ser un número y estar comprendido entre 0 y 9999999"
+                },
+                horario: {
+                    bsonType: "string",
+                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                    description: "Debe informar el campo schedule y este debe ser un string"
+                },
+                dias: {
+                    bsonType: "string",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    description: "Debe informar el campo days_opening y este debe ser un string"
                 }
             }
         }
@@ -202,7 +227,7 @@ db.createCollection("servicios", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["producto", "descripcion", "cantidad", "precio","area", "zona"],
+            required: ["producto", "descripcion", "cantidad", "precio","area", "zona", "horario_apertura", "horario_cierre"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -240,6 +265,16 @@ db.createCollection("servicios", {
                     bsonType: "string",
                     pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
                     description: "Debe informar el campo zone y este debe ser un string"
+                },
+                horario_apertura: {
+                    bsonType: "string",
+                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                    description: "Debe informar el campo opening_hours y este debe ser un string"
+                },
+                horario_cierre: {
+                    bsonType: "string",
+                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                    description: "Debe informar el campo closing_time y este debe ser un string"
                 }
             }
         }
