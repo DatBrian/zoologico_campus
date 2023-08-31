@@ -311,7 +311,11 @@ db.createCollection("jornadas", {
     }
 });
 use("db_zoologico");
+<<<<<<< HEAD
 db.createCollection("restauranteCafeteria", {
+=======
+db.createCollection("restaurante&cafeteria", {
+>>>>>>> 84d4b41 (refactor: :recycle: Arreglos las colecciones, agragadas colecciones)
     capped: true,
     size: 10000,
     max: 10,
