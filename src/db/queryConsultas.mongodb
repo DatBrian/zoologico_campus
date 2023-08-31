@@ -1,0 +1,296 @@
+//* Listar todos los animales en el Zoologico
+use("db_zoologico");
+db.animales.aggregate([{
+    $project: {
+        "_id":0,
+        "id":"$_id",
+        "name":"$nombre",
+        "species":"$especie",
+        "class":"$clase",
+        "sub_class":"$sub_clase",
+        "origin":"$pais_origen",
+        "state":"$estado",
+        "curiosity":"$dato_curioso",
+        "zone":"$zona",
+        "belonging_area":"$area"
+    }
+}]);
+
+//* Listar los animales en el Zoologico por Orden Alfabetico
+use("db_zoologico");
+db.animales.aggregate([
+    {
+        $sort: { "nombre": 1 }
+    },
+    {
+    $project: {
+        "_id":0,
+        "id":"$_id",
+        "name":"$nombre",
+        "species":"$especie",
+        "class":"$clase",
+        "sub_class":"$sub_clase",
+        "origin":"$pais_origen",
+        "state":"$estado",
+        "curiosity":"$dato_curioso",
+        "zone":"$zona",
+        "belonging_area":"$area"
+    }
+}
+]);
+
+//* Listar los animales por clase (Ejemplo: Mamífero)
+use("db_zoologico");
+db.animales.aggregate([
+    {
+        $match: {clase: "Mamífero"}
+    },
+    {
+    $project: {
+        "_id":0,
+        "id":"$_id",
+        "name":"$nombre",
+        "species":"$especie",
+        "class":"$clase",
+        "sub_class":"$sub_clase",
+        "origin":"$pais_origen",
+        "state":"$estado",
+        "curiosity":"$dato_curioso",
+        "zone":"$zona",
+        "belonging_area":"$area"
+    }
+}
+]);
+
+//* Listar los animales Acuático
+use("db_zoologico");
+db.animales.aggregate([
+    {
+        $match: {sub_clase: "Acuático"}
+    },
+    {
+    $project: {
+        "_id":0,
+        "id":"$_id",
+        "name":"$nombre",
+        "species":"$especie",
+        "class":"$clase",
+        "sub_class":"$sub_clase",
+        "origin":"$pais_origen",
+        "state":"$estado",
+        "curiosity":"$dato_curioso",
+        "zone":"$zona",
+        "belonging_area":"$area"
+    }
+}
+]);
+
+//* Listar animales por zona en el zoologico(Savana,Selva, Antártida,Bosque tropical, Océanos del mundo, Hielo polar, Río, Bosque de bambú)
+use("db_zoologico");
+db.animales.aggregate([
+    {
+        $match: {zona: "Río"}
+    },
+    {
+    $project: {
+        "_id":0,
+        "id":"$_id",
+        "name":"$nombre",
+        "species":"$especie",
+        "class":"$clase",
+        "sub_class":"$sub_clase",
+        "origin":"$pais_origen",
+        "state":"$estado",
+        "curiosity":"$dato_curioso",
+        "zone":"$zona",
+        "belonging_area":"$area"
+    }
+}
+]);
+
+//* Listar animales por sub_clase (Terrestres) y estado (En peligro de extinción)
+use("db_zoologico");
+db.animales.aggregate([
+    {
+        $match: {
+            sub_clase: "Terrestre",
+            estado: "En peligro de extinción"
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "species": "$especie",
+            "class": "$clase",
+            "sub_class": "$sub_clase",
+            "origin": "$pais_origen",
+            "state": "$estado",
+            "curiosity": "$dato_curioso",
+            "zone": "$zona",
+            "belonging_area": "$area"
+        }
+    }
+]);
+
+//? Listar Empleados
+use("db_zoologico");
+db.empleados.aggregate([
+    {
+        $project:{
+            "_id":0,
+            "id":"$_id",
+            "complete_name":"$nombre_completo",
+            "assigned_position":"$cargo",
+            "address":"$direccion",
+            "Email":"$email",
+            "phone_number":"$telefono",
+            "belonging_area":"$area_asignada",
+            "zone":"$zona",
+            "schedule":"$jornada"
+        }
+    }
+])
+
+//? Empleados por Jornada (Tiempo completo, Medio tiempo)
+use("db_zoologico");
+db.empleados.aggregate([
+    {
+        $match: {jornada:"Medio tiempo"}
+    },
+    {
+        $project:{
+            "_id":0,
+            "id":"$_id",
+            "complete_name":"$nombre_completo",
+            "assigned_position":"$cargo",
+            "address":"$direccion",
+            "Email":"$email",
+            "phone_number":"$telefono",
+            "belonging_area":"$area_asignada",
+            "zone":"$zona",
+            "schedule":"$jornada"
+        }
+    }
+])
+
+//? Empleados por cargo y area (Fotógrafo, Captura de momentos)
+use("db_zoologico");
+db.empleados.aggregate([
+    {
+        $match: {
+            cargo:"Fotógrafo", 
+            area_asignada:"Captura de momentos"
+        }
+    },
+    {
+        $project:{
+            "_id":0,
+            "id":"$_id",
+            "complete_name":"$nombre_completo",
+            "assigned_position":"$cargo",
+            "address":"$direccion",
+            "Email":"$email",
+            "phone_number":"$telefono",
+            "belonging_area":"$area_asignada",
+            "zone":"$zona",
+            "schedule":"$jornada"
+        }
+    }
+])
+
+//* Listar Eventos
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "date":"$fecha",
+            "state":"$estado",
+            "belonging_area":"$area",
+            "description_info":"$descripcion",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
+//* Proximos Eventos
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $match:{estado:"Próximo"}
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "date":"$fecha",
+            "belonging_area":"$area",
+            "description_info":"$descripcion",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
+//* Eventos Matiné
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $match:{hora_inicio:{ $regex: "^(0?[0-9]|1[0-1]):[0-5]\\d\\s?(am|AM)$" }}
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "date":"$fecha",
+            "state":"$estado",
+            "belonging_area":"$area",
+            "description_info":"$descripcion",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
+//* Eventos Por hora
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $match:{hora_inicio:"03:00 pm"}
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "date":"$fecha",
+            "state":"$estado",
+            "belonging_area":"$area",
+            "description_info":"$descripcion",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
+//* Eventos Concluidos por area y su horario
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $match:{estado: "Concluido", area: "Acuario"}
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "state":"$estado",
+            "belonging_area":"$area",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
