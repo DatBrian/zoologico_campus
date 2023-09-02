@@ -1,15 +1,15 @@
 import { Router } from "express";
 import routesVersioning from "express-routes-versioning";
-import AnimalesController from "../api/v1/AnimalesController.js";
+import EmpleadosController from "../api/v1/EmpleadosController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
-import { AnimalesDTO } from "../models/dto/animalesDTO.js";
+import { EmpleadosDTO } from "../models/dto/EmpleadosDTO.js";
 
 
-class AnimalesRoutes{
+class EmpleadosRoutes{
     constructor(){
-        this.path = "/animales";
+        this.path = "/empleados";
         this.router = Router();
-        this.controller = new AnimalesController(),
+        this.controller = new EmpleadosController(),
         this.version = routesVersioning();
         this.initRoutes();
     }
@@ -20,21 +20,21 @@ class AnimalesRoutes{
             "1.0.0": this.controller.getAll
         }));
         this.router.post(`${this.path}/insert`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
+        new ValidateDTOMiddleware(EmpleadosDTO).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
         this.router.put(`${this.path}/update/:id?`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
+        new ValidateDTOMiddleware(EmpleadosDTO).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)
             })
         })
         this.router.delete(`${this.path}/delete/:id?`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
+        new ValidateDTOMiddleware(EmpleadosDTO).validate(),
         (req,res)=>{
             this.version({
                 "1.0.0": this.controller.deleteOne(req,res)
@@ -44,4 +44,4 @@ class AnimalesRoutes{
     }
 }
 
-export default AnimalesRoutes
+export default EmpleadosRoutes

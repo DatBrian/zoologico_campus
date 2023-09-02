@@ -1,17 +1,17 @@
-import AnimalesService from "../../services/AnimalesService.js";
+import EmpleadosService from "../../services/EmpleadosService.js";
 import ClientError from "../../utils/ClientError.js";
 
-class AnimalesController{
+class EmpleadosController{
     constructor(){
-        this.service = new AnimalesService();
+        this.service = new EmpleadosService();
     }
 
     async getAll(_req, res){
         try {
-            const animales = await this.service.getAll();
-            res.json(animales);
+            const Empleados = await this.service.getAll();
+            res.json(Empleados);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Controlador");
+            new ClientError(400, "Error al obtener los Empleados Controlador");
             throw error.message;
         }
     }
@@ -20,7 +20,7 @@ class AnimalesController{
             const animal = await this.service.getById(req.query.id);
             res.json(animal);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Controlador");
+            new ClientError(400, "Error al obtener los Empleados Controlador");
             throw error.message;
         }
     }
@@ -29,7 +29,7 @@ class AnimalesController{
             const response = await this.service.insertOne(req.body);
             res,json(response)
         } catch (error) {
-            new ClientError(400, "Error al insertar los animales Controlador");
+            new ClientError(400, "Error al insertar los Empleados Controlador");
             throw error.message;
         }
     }
@@ -40,7 +40,7 @@ class AnimalesController{
             const response = await this.service.updateOne(id, body);
             res.json(response);
         } catch (error) {
-            new ClientError(400, "Error al insertar los animales Controlador");
+            new ClientError(400, "Error al insertar los Empleados Controlador");
             throw error.message;
         }
     }
@@ -49,9 +49,9 @@ class AnimalesController{
             const response = await this.service.deleteOne(req.query.id);
             res.json(response);
         } catch (error) {
-            new ClientError(400, "Error al borrar los animales Controlador");
+            new ClientError(400, "Error al borrar los Empleados Controlador");
             throw error.message;
         }
     }
 }
-export default AnimalesController;
+export default EmpleadosController;

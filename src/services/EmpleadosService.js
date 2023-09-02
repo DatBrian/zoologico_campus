@@ -1,17 +1,17 @@
 import { ObjectId } from "mongodb";
-import AnimalesRepository from "../repositories/AnimalesRepository.js";
+import EmpleadosRepository from "../repositories/EmpleadosRepository.js";
 import ClientError from "../utils/ClientError.js";
 
-class AnimalesService   {
+class EmpleadosService   {
     constructor(){
-        this.repository = new AnimalesRepository();
+        this.repository = new EmpleadosRepository();
     }
 
     async getAll(){
         try {
             return await this.repository.getAll();
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Servicio");
+            new ClientError(400, "Error al obtener los Empleados Servicio");
             throw error.message;
         }
     }
@@ -20,7 +20,7 @@ class AnimalesService   {
             const objectId = new ObjectId;
             return await this.repository.getByid(objectId);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Servicio");
+            new ClientError(400, "Error al obtener los Empleados Servicio");
             throw error.message;
         }
     }
@@ -28,7 +28,7 @@ class AnimalesService   {
         try {
             return await this.repository.insertOne(body);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Servicio");
+            new ClientError(400, "Error al obtener los Empleados Servicio");
             throw error.message;
         }
     }
@@ -37,7 +37,7 @@ class AnimalesService   {
             const ObjectId =  new ObjectId(id)
             return await this.repository.updateOne(ObjectId, body);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Servicio");
+            new ClientError(400, "Error al obtener los Empleados Servicio");
             throw error.message;
         }
     }
@@ -46,9 +46,9 @@ class AnimalesService   {
             const ObjectId =  new ObjectId(id)
             return await this.repository.updateOne(ObjectId);
         } catch (error) {
-            new ClientError(400, "Error al obtener los animales Servicio");
+            new ClientError(400, "Error al obtener los Empleados Servicio");
             throw error.message;
         }
     }
 }
-export default AnimalesService;
+export default EmpleadosService;
