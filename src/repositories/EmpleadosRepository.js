@@ -1,28 +1,27 @@
 import Connection from "../db/Connection.js";
 import ClientError from "../utils/ClientError.js";
 
-class AnimalesRepository extends Connection{
+class EmpleadosRepository extends Connection{
     constructor(){
         super();
-        this.entity = "animales";
+        this.entity = "empleados";
     }
 
     async getAll(){
         try {
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([{
-                $project: {
+                $project:{
                     "_id":0,
                     "id":"$_id",
-                    "name":"$nombre",
-                    "species":"$especie",
-                    "class":"$clase",
-                    "sub_class":"$sub_clase",
-                    "origin":"$pais_origen",
-                    "state":"$estado",
-                    "curiosity":"$dato_curioso",
+                    "complete_name":"$nombre_completo",
+                    "assigned_position":"$cargo",
+                    "address":"$direccion",
+                    "Email":"$email",
+                    "phone_number":"$telefono",
+                    "belonging_area":"$area_asignada",
                     "zone":"$zona",
-                    "belonging_area":"$area"
+                    "schedule":"$jornada"
                 }
             }]);
         } catch (error) {
@@ -41,15 +40,14 @@ class AnimalesRepository extends Connection{
                 $project: {
                     "_id":0,
                     "id":"$_id",
-                    "name":"$nombre",
-                    "species":"$especie",
-                    "class":"$clase",
-                    "sub_class":"$sub_clase",
-                    "origin":"$pais_origen",
-                    "state":"$estado",
-                    "curiosity":"$dato_curioso",
+                    "complete_name":"$nombre_completo",
+                    "assigned_position":"$cargo",
+                    "address":"$direccion",
+                    "Email":"$email",
+                    "phone_number":"$telefono",
+                    "belonging_area":"$area_asignada",
                     "zone":"$zona",
-                    "belonging_area":"$area"
+                    "schedule":"$jornada"
                 }
             }
         ]);
@@ -91,4 +89,4 @@ class AnimalesRepository extends Connection{
         }
     }
 }
-export default AnimalesRepository;
+export default EmpleadosRepository;
