@@ -1,7 +1,6 @@
 import { check } from "express-validator";
 
-export const CheckPostAllAnimals= [
-
+export const AnimalesDTO= [
     check("name")
     .notEmpty().withMessage("El campo name es Obligatorio")
     .isString().withMessage("El campo name debe ser de tipo String")
