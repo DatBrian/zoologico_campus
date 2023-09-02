@@ -2,7 +2,7 @@ import { Router } from "express";
 import routesVersioning from "express-routes-versioning";
 import AnimalesController from "../api/v1/AnimalesController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
-import { AnimalesDTO } from "../models/dto/animalesDTO.js";
+import { AnimalesDTO } from "../models/dto/AnimalesDTO.js";
 
 
 class AnimalesRoutes{
