@@ -294,3 +294,250 @@ db.eventos.aggregate([
     }
 ])
 
+//* Eventos Entre Determinadas Fechas ("2023-07-15") y ("2023-08-25")
+use("db_zoologico");
+db.eventos.aggregate([
+    {
+        $match : {
+            fecha: {
+                $gte: ("2023-07-15"),
+                $lte: ("2023-08-25")
+            }
+        }
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "date":"$fecha",
+            "state":"$estado",
+            "belonging_area":"$area",
+            "description_info":"$descripcion",
+            "start_time":"$hora_inicio",
+            "end_time":"$hora_finalizacion"
+        }
+    }
+])
+
+//? Listar Informacion de todos los pases
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "name":"$nombre",
+            "type":"$tipo",
+            "description":"$descripcion",
+            "zone":"$zonas",
+            "prices":"$precios",
+            "schedule":"$horario",
+            "days_opening":"$dias",
+        }
+    }
+]);
+
+//? Listar Pases Por fin de semana
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: { 
+            $or:[
+                {dias:"Lunes a domingo"},
+                {dias:"Sábados y domingos"}
+            ]
+        }
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "name":"$nombre",
+            "type":"$tipo",
+            "description":"$descripcion",
+            "zone":"$zonas",
+            "prices":"$precios",
+            "schedule":"$horario",
+            "days_opening":"$dias",
+        }
+    }
+]);
+
+//? Listar Pases toda la semana
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: { dias: "Lunes a domingo"}
+    },
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "name":"$nombre",
+            "type":"$tipo",
+            "description":"$descripcion",
+            "zone":"$zonas",
+            "prices":"$precios",
+            "schedule":"$horario",
+            "days_opening":"$dias",
+        }
+    }
+]);
+
+//? Listar Pases Por Descuento Infantil y Tercera Edad
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: {
+            $or: [
+                { descripcion: "Acceso para personas mayores de 60 años" },
+                { descripcion: "Acceso para niños menores de 12 años" }
+            ]
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "type": "$tipo",
+            "description": "$descripcion",
+            "zone": "$zonas",
+            "prices": "$precios",
+            "schedule": "$horario",
+            "days_opening": "$dias"
+        }
+    }
+]);
+
+//? Listar Pases Por Tipo (Taller, Entrada,Suscripción,Actividad)
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: {
+            tipo: "Entrada"
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "type": "$tipo",
+            "description": "$descripcion",
+            "zone": "$zonas",
+            "prices": "$precios",
+            "schedule": "$horario",
+            "days_opening": "$dias"
+        }
+    }
+]);
+
+//? Listar Pases Por Precio menor o igual 30000
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: {
+            precios:{
+                $lte:30000
+            }
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "type": "$tipo",
+            "description": "$descripcion",
+            "zone": "$zonas",
+            "prices": "$precios",
+            "schedule": "$horario",
+            "days_opening": "$dias"
+        }
+    }
+]);
+
+//? Listar Pases con acceso a todas las areas
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: {
+            zonas:"Todas las áreas"
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "type": "$tipo",
+            "description": "$descripcion",
+            "zone": "$zonas",
+            "prices": "$precios",
+            "schedule": "$horario",
+            "days_opening": "$dias"
+        }
+    }
+]);
+
+//? Listar Pases dia entero
+use("db_zoologico");
+db.pase.aggregate([
+    {
+        $match: {
+            horario:"09:00 am - 06:00 pm"
+        }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "id": "$_id",
+            "name": "$nombre",
+            "type": "$tipo",
+            "description": "$descripcion",
+            "zone": "$zonas",
+            "prices": "$precios",
+            "schedule": "$horario",
+            "days_opening": "$dias"
+        }
+    }
+]);
+
+//* Listar Servicios
+use("db_zoologico");
+db.servicios.aggregate([
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "producto":"$producto",
+            "descripcion":"$descripcion",
+            "cantidad":"$cantidad",
+            "precio":"$precio",
+            "area":"$area",
+            "zona":"$zona",
+            "horario_apertura":"$horario_apertura",
+            "horario_cierre":"$horario_cierre"
+        }
+    }
+]);
+
+//* Listar Servicios
+use("db_zoologico");
+db.servicios.aggregate([
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "producto":"$producto",
+            "descripcion":"$descripcion",
+            "cantidad":"$cantidad",
+            "precio":"$precio",
+            "area":"$area",
+            "zona":"$zona",
+            "horario_apertura":"$horario_apertura",
+            "horario_cierre":"$horario_cierre"
+        }
+    }
+]);
