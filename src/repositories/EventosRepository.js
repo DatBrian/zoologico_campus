@@ -1,27 +1,25 @@
 import Connection from "../db/Connection.js";
 import ClientError from "../utils/ClientError.js";
 
-class EmpleadosRepository extends Connection{
+class EventosRepository extends Connection{
     constructor(){
         super();
-        this.entity = "empleados";
+        this.entity = "eventos";
     }
 
     async getAll(){
         try {
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([{
-                $project:{
+                $project: {
                     "_id":0,
                     "id":"$_id",
-                    "complete_name":"$nombre_completo",
-                    "assigned_position":"$cargo",
-                    "address":"$direccion",
-                    "Email":"$email",
-                    "phone_number":"$telefono",
-                    "belonging_area":"$area_asignada",
-                    "zone":"$zona",
-                    "schedule":"$jornada"
+                    "date":"$fecha",
+                    "state":"$estado",
+                    "belonging_area":"$area",
+                    "description_info":"$descripcion",
+                    "start_time":"$hora_inicio",
+                    "end_time":"$hora_finalizacion"
                 }
             }]).toArray();
         } catch (error) {
@@ -37,22 +35,20 @@ class EmpleadosRepository extends Connection{
                     $match: { "_id": id }
                 },
                 {
-                $project: {
-                    "_id":0,
-                    "id":"$_id",
-                    "complete_name":"$nombre_completo",
-                    "assigned_position":"$cargo",
-                    "address":"$direccion",
-                    "Email":"$email",
-                    "phone_number":"$telefono",
-                    "belonging_area":"$area_asignada",
-                    "zone":"$zona",
-                    "schedule":"$jornada"
-                }
+                    $project: {
+                        "_id":0,
+                        "id":"$_id",
+                        "date":"$fecha",
+                        "state":"$estado",
+                        "belonging_area":"$area",
+                        "description_info":"$descripcion",
+                        "start_time":"$hora_inicio",
+                        "end_time":"$hora_finalizacion"
+                    }
             }
         ]).toArray();
         } catch (error) {
-            new ClientError(304, `Error al obtener en ${this.entity}`);
+            new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
         }
     }
@@ -75,7 +71,7 @@ class EmpleadosRepository extends Connection{
             );
             return `${this.entity} updated successfully`
         } catch (error) {
-            new ClientError(400, `Error al actualizar la data en ${this.entity}`);
+            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
             throw error.message;
         }
     }
@@ -89,4 +85,4 @@ class EmpleadosRepository extends Connection{
         }
     }
 }
-export default EmpleadosRepository;
+export default EventosRepository;

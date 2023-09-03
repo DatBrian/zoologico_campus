@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 
-export const CheckPostAllPases= [
+export const PasesDTO= [
 
     check("name")
     .notEmpty().withMessage("El campo name es Obligatorio")

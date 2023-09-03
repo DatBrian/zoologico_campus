@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 
-export const CheckPostAllJornadas= [
+export const JornadasDTO= [
 
     check("schedule")
     .notEmpty().withMessage("El campo schedule es Obligatorio")

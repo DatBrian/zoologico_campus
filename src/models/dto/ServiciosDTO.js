@@ -1,16 +1,16 @@
 import { check } from "express-validator";
 
-export const CheckPostAllServicios= [
+export const ServiciosDTO= [
 
     check("product")
     .notEmpty().withMessage("El campo product es Obligatorio")
     .isString().withMessage("El campo product debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
 
     check("description")
     .notEmpty().withMessage("El campo description es Obligatorio")
     .isString().withMessage("El campo description debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
 
     check("price")
     .notEmpty().withMessage("El campo price es Obligatorio")
@@ -20,12 +20,12 @@ export const CheckPostAllServicios= [
     check("belonging_area")
     .notEmpty().withMessage("El campo belonging_area es Obligatorio")
     .isString().withMessage("El campo belonging_area debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
 
     check("zone")
     .notEmpty().withMessage("El campo zone es Obligatorio")
     .isString().withMessage("El campo zone debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
 
     check("opening_hours")
     .notEmpty().withMessage("El campo opening_hours es Obligatorio")

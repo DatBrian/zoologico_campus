@@ -8,13 +8,13 @@ class Connection {
     }
 
     getUri() {
-        return `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.rkhsbgh.mongodb.net/?retryWrites=true&w=majority`;
+        return `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clusterdb.hicawdu.mongodb.net/${process.env.DB_NAME}`;
     }
 
     async connect() {
         try {
             await this.client.connect();
-            this.db = this.client.db("zoologico_campus");
+            this.db = this.client.db("db_zoologico");
         } catch (error) {
             console.error("Error al conectar con la base de datos:", error);
             throw error;

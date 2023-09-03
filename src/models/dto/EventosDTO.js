@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 
-export const CheckPostAllEvents= [
+export const EventosDTO= [
 
     check("date")
     .notEmpty().withMessage("El campo date es Obligatorio")
