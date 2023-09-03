@@ -16,6 +16,10 @@ class ServiciosService {
                 const objectId = new ObjectId(id);
                 return await this.repository.getById(objectId);
         }
+        async getByAlphabeticOrder() {
+                this.repository = new ServiciosRepository();
+                return await this.repository.getByAlphabeticOrder();
+        }
         async insertOne(body) {
                 this.repository = new ServiciosRepository();
                 return await this.repository.insertOne(body);

@@ -5,12 +5,11 @@ export const AnimalesDTO= [
     check("name")
     .notEmpty().withMessage("El campo name es Obligatorio")
     .isString().withMessage("El campo name debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$/).withMessage("Solo admite letras"),
+    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
 
     check("species")
     .notEmpty().withMessage("El campo species es Obligatorio")
-    .isString().withMessage("El campo species debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
+    .isString().withMessage("El campo species debe ser de tipo String"),
 
     check("class")
     .notEmpty().withMessage("El campo class es Obligatorio")
@@ -34,8 +33,7 @@ export const AnimalesDTO= [
 
     check("curiosity")
     .notEmpty().withMessage("El campo curiosity es Obligatorio")
-    .isString().withMessage("El campo curiosity debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras"),
+    .isString().withMessage("El campo curiosity debe ser de tipo String"),
 
     check("zone")
     .notEmpty().withMessage("El campo zone es Obligatorio")
@@ -45,7 +43,6 @@ export const AnimalesDTO= [
     check("belonging_area")
     .notEmpty().withMessage("El campo belonging_area es Obligatorio")
     .isString().withMessage("El campo belonging_area debe ser de tipo String")
-    .matches(/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$/).withMessage("Solo admite letras")
 ]
 
 

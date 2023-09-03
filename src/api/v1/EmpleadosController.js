@@ -30,7 +30,7 @@ class EmpleadosController{
         try {
             this.service = new EmpleadosService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los Empleados Controlador");
             throw error.message;

@@ -72,7 +72,7 @@ class JornadasRepository extends Connection{
     async deleteOne(id){
         try {
             await this.connect();
-            await this.getDatabase().collection(this.entity).deleteOne(id);
+            await this.getDatabase().collection(this.entity).deleteOne({"_id": id});
             return `${this.entity} deleted succesfully`
         } catch (error) {
             new ClientError(400, `Error al borrar la data en ${this.entity}`);

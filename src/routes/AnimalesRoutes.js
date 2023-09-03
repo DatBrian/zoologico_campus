@@ -3,7 +3,7 @@ import routesVersioning from "express-routes-versioning";
 import AnimalesController from "../api/v1/AnimalesController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { AnimalesDTO } from "../models/dto/AnimalesDTO.js";
-
+import AnimalesSchema from "../models/schemas/AnimalesSchema.js"
 
 class AnimalesRoutes{
     constructor(){
@@ -12,23 +12,25 @@ class AnimalesRoutes{
         this.controller = new AnimalesController(),
         this.version = routesVersioning();
         this.initRoutes();
+        this.schema = null;
     }
 
     async initRoutes(){
         this.router.get(`${this.path}/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,
-            "1.0.1": this.controller.getById
+            "1.0.1": this.controller.getById,
+            "1.0.2": this.controller.getByAlphabeticOrder
         }));
         this.router.post(`${this.path}/insert`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
+        new ValidateDTOMiddleware(AnimalesDTO, AnimalesSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
         this.router.put(`${this.path}/update/:id?`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
+        new ValidateDTOMiddleware(AnimalesDTO, AnimalesSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)

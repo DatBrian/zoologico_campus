@@ -54,17 +54,11 @@ class RestauranteCafeteriasRepository extends Connection {
         }
     }
     async insertOne(body) {
-        try {
             await this.connect();
             await this.getDatabase().collection(this.entity).insertOne(body);
             return `${this.entity} inserted successfully`
-        } catch (error) {
-            new ClientError(304, `Error al ingresar la data en ${this.entity}`);
-            throw error.message;
-        }
     }
     async updateOne(id, body) {
-        try {
             await this.connect();
             await this.getDatabase().collection(this.entity).updateOne({
                 "_id": id
@@ -72,19 +66,11 @@ class RestauranteCafeteriasRepository extends Connection {
                 $set: body
             });
             return `${this.entity} updated successfully`
-        } catch (error) {
-            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
-            throw error.message;
-        }
     }
     async deleteOne(id) {
-        try {
             await this.connect();
-            await this.getDatabase().collection(this.entity).deleteOne(id);
+            await this.getDatabase().collection(this.entity).deleteOne({"_id": id});
             return `${this.entity} deleted succesfully`
-        } catch (error) {
-            new ClientError(400, `Error al borrar la data en ${this.entity}`);
-        }
     }
 }
 export default RestauranteCafeteriasRepository;

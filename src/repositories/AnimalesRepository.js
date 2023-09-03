@@ -56,28 +56,47 @@ class AnimalesRepository extends Connection{
             throw error.message;
         }
     }
-    async insertOne(body){
+    async getByAlphabeticOrder(){
         try {
             await this.connect();
-            await this.getDatabase().collection(this.entity).insertOne(body);
-            return `${this.entity} inserted successfully`
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $sort: { "nombre": 1 }
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "name":"$nombre",
+                    "species":"$especie",
+                    "class":"$clase",
+                    "sub_class":"$sub_clase",
+                    "origin":"$pais_origen",
+                    "state":"$estado",
+                    "curiosity":"$dato_curioso",
+                    "zone":"$zona",
+                    "belonging_area":"$area"
+                }
+            }
+        ]).toArray();
         } catch (error) {
-            new ClientError(400, `Error al ingresar la data en ${this.entity}`);
+            new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
         }
     }
+    async insertOne(body){
+            console.log(body);
+            await this.connect();
+            await this.getDatabase().collection(this.entity).insertOne(body);
+            return `${this.entity} inserted successfully`
+    }
     async updateOne(id,body){
-        try {
             await this.connect();
             await this.getDatabase().collection(this.entity).updateOne(
                 {"_id": id},
                 {$set: body}
             );
             return `${this.entity} updated successfully`
-        } catch (error) {
-            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
-            throw error.message;
-        }
     }
     async deleteOne(id){
             console.log(id);

@@ -3,7 +3,7 @@ import routesVersioning from "express-routes-versioning";
 import RestauranteCafeteriasController from "../api/v1/RestauranteCafeteriasController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { RestauranteCafeteriasDTO } from "../models/dto/RestauranteCafeteriasDTO.js";
-
+import RestauranteCafeteriasSchema from "../models/schemas/RestauranteCafeteriasSchema.js"
 
 class RestauranteCafeteriasRoutes{
     constructor(){
@@ -12,6 +12,7 @@ class RestauranteCafeteriasRoutes{
         this.controller = new RestauranteCafeteriasController(),
         this.version = routesVersioning();
         this.initRoutes();
+        this.schema = null;
     }
 
     initRoutes(){
@@ -21,14 +22,14 @@ class RestauranteCafeteriasRoutes{
             "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
-        new ValidateDTOMiddleware(RestauranteCafeteriasDTO).validate(),
+        new ValidateDTOMiddleware(RestauranteCafeteriasDTO, RestauranteCafeteriasSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
         this.router.put(`${this.path}/update/:id?`,
-        new ValidateDTOMiddleware(RestauranteCafeteriasDTO).validate(),
+        new ValidateDTOMiddleware(RestauranteCafeteriasDTO, RestauranteCafeteriasSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)

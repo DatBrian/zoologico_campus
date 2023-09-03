@@ -2,7 +2,6 @@ import {
         ObjectId
 } from "mongodb";
 import PasesRepository from "../repositories/PasesRepository.js";
-import ClientError from "../utils/ClientError.js";
 
 class PasesService {
         constructor() {

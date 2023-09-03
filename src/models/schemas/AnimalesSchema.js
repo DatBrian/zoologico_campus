@@ -7,6 +7,68 @@ class AnimalesSchema {
         this.collection = this.database.collection(this.entity);
     }
 
+    static properties(){
+        return {
+            _id: {
+                bsonType: "objectId",
+            },
+            nombre: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo name y este debe ser un string",
+            },
+            especie: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo species y este debe ser un string",
+            },
+            clase: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo class y este debe ser un string",
+            },
+            subclase: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo sub_class y este debe ser un string",
+            },
+            pais_origen: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo origin y este debe ser un string",
+            },
+            estado: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo state y este debe ser un string",
+            },
+            dato_curioso: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo curiosity y este debe ser un string",
+            },
+            zona: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo zone y este debe ser un string",
+            },
+            area: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo belonging_area y este debe ser un string",
+            },
+        }
+    }
+
     async generateCollection() {
         try {
             await this.database.createCollection(this.entity, {
