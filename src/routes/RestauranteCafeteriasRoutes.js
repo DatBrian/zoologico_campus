@@ -7,7 +7,7 @@ import { RestauranteCafeteriasDTO } from "../models/dto/RestauranteCafeteriasDTO
 
 class RestauranteCafeteriasRoutes{
     constructor(){
-        this.path = "/RestauranteCafeterias";
+        this.path = "/restauranteCafeterias";
         this.router = Router();
         this.controller = new RestauranteCafeteriasController(),
         this.version = routesVersioning();
