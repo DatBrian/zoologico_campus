@@ -32,47 +32,41 @@ class PaseSchema {
                             },
                             nombre: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo name y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo name y este debe ser un string"
                             },
                             tipo: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo type y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo type y este debe ser un string"
                             },
                             descripcion: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo description y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo description y este debe ser un string"
                             },
                             zonas: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo zone y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo zone y este debe ser un string"
                             },
                             precios: {
-                                bsonType: "int",
+                                bsonType: "number",
                                 minimum: 0,
                                 maximum: 9999999,
                                 pattern: "^[0-9,.#@\\s-]+$",
-                                description:
-                                    "El campo prices debe ser un número y estar comprendido entre 0 y 9999999",
+                                description: "El campo prices debe ser un número y estar comprendido entre 0 y 9999999"
                             },
                             horario: {
                                 bsonType: "string",
-                                description:
-                                    "Debe informar el campo schedule y este debe ser un string",
+                                pattern: "^.*$",
+                                description: "Debe informar el campo schedule y este debe ser un string"
                             },
                             dias: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo days_opening y este debe ser un string",
-                            },
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo days_opening y este debe ser un string"
+                            }
                         },
                     },
                 },

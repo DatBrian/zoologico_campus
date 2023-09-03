@@ -33,54 +33,41 @@ class ServiciosSchema {
                             },
                             producto: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo product y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo product y este debe ser un string"
                             },
                             descripcion: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo description y este debe ser un string",
-                            },
-                            cantidad: {
-                                bsonType: "int",
-                                minimum: 0,
-                                maximum: 9999,
-                                pattern: "^[0-9,.#@\\s-]+$",
-                                description:
-                                    "El campo amount debe ser un número y estar comprendido entre 0 y 9999",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo description y este debe ser un string"
                             },
                             precio: {
                                 bsonType: "int",
                                 minimum: 0,
                                 maximum: 9999999,
                                 pattern: "^[0-9,.#@\\s-]+$",
-                                description:
-                                    "El campo price debe ser un número y estar comprendido entre 0 y 9999999",
+                                description: "El campo price debe ser un número y estar comprendido entre 0 y 9999999"
                             },
                             area: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo belonging_area y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo belonging_area y este debe ser un string"
                             },
                             zona: {
                                 bsonType: "string",
-                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                                description:
-                                    "Debe informar el campo zone y este debe ser un string",
+                                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                                description: "Debe informar el campo zone y este debe ser un string"
                             },
                             horario_apertura: {
                                 bsonType: "string",
-                                description:
-                                    "Debe informar el campo opening_hours y este debe ser un string",
+                                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                                description: "Debe informar el campo opening_hours y este debe ser un string"
                             },
                             horario_cierre: {
                                 bsonType: "string",
-                                description:
-                                    "Debe informar el campo closing_time y este debe ser un string",
-                            },
+                                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                                description: "Debe informar el campo closing_time y este debe ser un string"
+                            }
                         },
                     },
                 },
