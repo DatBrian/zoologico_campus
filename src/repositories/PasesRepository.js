@@ -4,7 +4,7 @@ import ClientError from "../utils/ClientError.js";
 class PasesRepository extends Connection {
     constructor() {
         super();
-        this.entity = "Pases";
+        this.entity = "pases";
     }
 
     async getAll() {
@@ -22,7 +22,7 @@ class PasesRepository extends Connection {
                     "schedule": "$horario",
                     "days_opening": "$dias",
                 }
-            }]);
+            }]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -49,7 +49,7 @@ class PasesRepository extends Connection {
                         "days_opening": "$dias",
                     }
                 }
-            ]);
+            ]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -61,7 +61,7 @@ class PasesRepository extends Connection {
             await this.getDatabase().collection(this.entity).insertOne(body);
             return `${this.entity} inserted successfully`
         } catch (error) {
-            new ClientError(400, `Error al ingresar la data en ${this.entity}`);
+            new ClientError(304, `Error al ingresar la data en ${this.entity}`);
             throw error.message;
         }
     }
@@ -75,7 +75,7 @@ class PasesRepository extends Connection {
             });
             return `${this.entity} updated successfully`
         } catch (error) {
-            new ClientError(400, `Error al actualizar la data en ${this.entity}`);
+            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
             throw error.message;
         }
     }

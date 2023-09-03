@@ -4,7 +4,7 @@ import ClientError from "../utils/ClientError.js";
 class ServiciosRepository extends Connection {
     constructor() {
         super();
-        this.entity = "Servicios";
+        this.entity = "servicios";
     }
 
     async getAll() {
@@ -23,7 +23,7 @@ class ServiciosRepository extends Connection {
                     "horario_apertura": "$horario_apertura",
                     "horario_cierre": "$horario_cierre"
                 }
-            }]);
+            }]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -51,7 +51,7 @@ class ServiciosRepository extends Connection {
                         "horario_cierre": "$horario_cierre"
                     }
                 }
-            ]);
+            ]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -63,7 +63,7 @@ class ServiciosRepository extends Connection {
             await this.getDatabase().collection(this.entity).insertOne(body);
             return `${this.entity} inserted successfully`
         } catch (error) {
-            new ClientError(400, `Error al ingresar la data en ${this.entity}`);
+            new ClientError(304, `Error al ingresar la data en ${this.entity}`);
             throw error.message;
         }
     }
@@ -77,7 +77,7 @@ class ServiciosRepository extends Connection {
             });
             return `${this.entity} updated successfully`
         } catch (error) {
-            new ClientError(400, `Error al actualizar la data en ${this.entity}`);
+            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
             throw error.message;
         }
     }
