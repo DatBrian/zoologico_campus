@@ -135,6 +135,7 @@ db.createCollection("eventos", {
                 },
                 fecha: {
                     bsonType: "date",
+                    pattern:"^(?:\\d{4})-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$",
                     description: "Debe informar el campo date y este debe ser un string"
                 },
                 estado: {
@@ -237,12 +238,12 @@ db.createCollection("servicios", {
                 },
                 producto: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo product y este debe ser un string"
                 },
                 descripcion: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo description y este debe ser un string"
                 },
                 precio: {
@@ -254,12 +255,12 @@ db.createCollection("servicios", {
                 },
                 area: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo belonging_area y este debe ser un string"
                 },
                 zona: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo zone y este debe ser un string"
                 },
                 horario_apertura: {
@@ -310,7 +311,7 @@ db.createCollection("jornadas", {
     }
 });
 use("db_zoologico");
-db.createCollection("restaurante&cafeteria", {
+db.createCollection("restauranteCafeteria", {
     capped: true,
     size: 10000,
     max: 10,
@@ -318,43 +319,44 @@ db.createCollection("restaurante&cafeteria", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["producto", "descripcion", "cantidad", "precio","horario_apertura",
-            "horario_cierre"],
+            required: ["producto", "descripcion", "cantidad", "precio","lugar", "jornada"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
                 },
                 producto: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo product y este debe ser un string"
                 },
                 descripcion: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                     description: "Debe informar el campo description y este debe ser un string"
                 },
                 cantidad: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 9999,
+                    pattern: "^[0-9,.#@\\s-]+$",
+                    description: "El campo amount debe ser un número y estar comprendido entre 0 y 9999"
+                },
+                precio: {
                     bsonType: "int",
                     minimum: 0,
                     maximum: 9999999,
                     pattern: "^[0-9,.#@\\s-]+$",
                     description: "El campo amount debe ser un número y estar comprendido entre 0 y 9999999"
                 },
-                precio: {
+                lugar: {
                     bsonType: "string",
-                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                    description: "Debe informar el campo price y este debe ser un string"
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                    description: "Debe informar el campo place y este debe ser un string"
                 },
-                horario_apertura: {
+                jornada: {
                     bsonType: "string",
-                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
-                    description: "Debe informar el campo opening_hours y este debe ser un string"
-                },
-                horario_cierre: {
-                    bsonType: "string",
-                    pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
-                    description: "Debe informar el campo closing_hours y este debe ser un string"
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                    description: "Debe informar el campo schedule y este debe ser un string"
                 }
             }
         }
