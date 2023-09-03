@@ -20,6 +20,10 @@ class AnimalesService {
                 this.repository = new AnimalesRepository();
                 return await this.repository.getByAlphabeticOrder();
         }
+        async getByClass(clase) {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getByClass(clase);
+        }
         async insertOne(body) {
                 this.repository = new AnimalesRepository();
                 return await this.repository.insertOne(body);

@@ -16,11 +16,12 @@ class AnimalesRoutes{
     }
 
     async initRoutes(){
-        this.router.get(`${this.path}/all/:id?`,
+        this.router.get(`${this.path}/all/:id?/:clase?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById,
-            "1.0.2": this.controller.getByAlphabeticOrder
+            "1.0.2": this.controller.getByAlphabeticOrder,
+            "1.0.3": this.controller.getByClass
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(AnimalesDTO, AnimalesSchema.properties()).validate(),

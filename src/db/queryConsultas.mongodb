@@ -38,7 +38,7 @@ db.animales.aggregate([
     }
 }
 ]);
-
+Mammalia
 //* Listar los animales por clase (Ejemplo: Mamífero)
 use("db_zoologico");
 db.animales.aggregate([

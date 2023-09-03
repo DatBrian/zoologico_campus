@@ -84,6 +84,34 @@ class AnimalesRepository extends Connection{
             throw error.message;
         }
     }
+    async getByClass(clase){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {clase: clase}
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "name":"$nombre",
+                    "species":"$especie",
+                    "class":"$clase",
+                    "sub_class":"$sub_clase",
+                    "origin":"$pais_origen",
+                    "state":"$estado",
+                    "curiosity":"$dato_curioso",
+                    "zone":"$zona",
+                    "belonging_area":"$area"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
     async insertOne(body){
             console.log(body);
             await this.connect();
