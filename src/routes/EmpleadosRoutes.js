@@ -3,6 +3,7 @@ import routesVersioning from "express-routes-versioning";
 import EmpleadosController from "../api/v1/EmpleadosController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { EmpleadosDTO } from "../models/dto/EmpleadosDTO.js";
+import EmpleadosSchema from "../models/schemas/EmpleadosSchema.js"
 
 
 class EmpleadosRoutes{
@@ -12,6 +13,7 @@ class EmpleadosRoutes{
         this.controller = new EmpleadosController(),
         this.version = routesVersioning();
         this.initRoutes();
+        this.schema = null;
     }
 
     initRoutes(){
@@ -21,14 +23,14 @@ class EmpleadosRoutes{
             "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
-        new ValidateDTOMiddleware(EmpleadosDTO).validate(),
+        new ValidateDTOMiddleware(EmpleadosDTO, EmpleadosSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
         this.router.put(`${this.path}/update/:id?`,
-        new ValidateDTOMiddleware(EmpleadosDTO).validate(),
+        new ValidateDTOMiddleware(EmpleadosDTO, EmpleadosSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)

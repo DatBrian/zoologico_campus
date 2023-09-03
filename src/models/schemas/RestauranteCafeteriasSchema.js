@@ -1,10 +1,52 @@
 import ClientError from "../../utils/ClientError.js";
 
-class RestauranteCafeteriaSchema {
+class RestauranteCafeteriasSchema {
     constructor(database) {
         this.database = database;
         this.entity = "restauranteCafeterias";
         this.collection = this.database.collection(this.entity);
+    }
+
+    static properties(){
+        return{
+            _id: {
+                bsonType: 'objectId',
+            },
+            producto: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo product y este debe ser un string"
+            },
+            descripcion: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo description y este debe ser un string"
+            },
+            cantidad: {
+                bsonType: "int",
+                minimum: 0,
+                maximum: 9999,
+                pattern: "^[0-9,.#@\\s-]+$",
+                description: "El campo amount debe ser un número y estar comprendido entre 0 y 9999"
+            },
+            precio: {
+                bsonType: "int",
+                minimum: 0,
+                maximum: 9999999,
+                pattern: "^[0-9,.#@\\s-]+$",
+                description: "El campo price debe ser un número y estar comprendido entre 0 y 9999999"
+            },
+            lugar: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo place y este debe ser un string"
+            },
+            jornada: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo schedule y este debe ser un string"
+            }
+        }
     }
 
     async generateCollection() {
@@ -18,7 +60,7 @@ class RestauranteCafeteriaSchema {
                         bsonType: "object",
                         additionalProperties: false,
                         required: ["producto", "descripcion", "cantidad", "precio","lugar", "jornada"],
-                        properties: {
+                        properties:{
                             _id: {
                                 bsonType: 'objectId',
                             },
@@ -117,4 +159,4 @@ class RestauranteCafeteriaSchema {
         }
     }
 }
-export default RestauranteCafeteriaSchema;
+export default RestauranteCafeteriasSchema;

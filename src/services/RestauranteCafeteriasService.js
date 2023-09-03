@@ -2,7 +2,6 @@ import {
         ObjectId
 } from "mongodb";
 import RestauranteCafeteriasRepository from "../repositories/RestauranteCafeteriasRepository.js";
-import ClientError from "../utils/ClientError.js";
 
 class RestauranteCafeteriasService {
         constructor() {

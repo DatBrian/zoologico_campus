@@ -9,6 +9,7 @@ class ValidateDTOMiddleware {
     async mapProperties(req) {
         const updatedBody = {};
 
+
         const properties = Object.keys(this.properties).filter(
             (key) => key !== "_id"
         );

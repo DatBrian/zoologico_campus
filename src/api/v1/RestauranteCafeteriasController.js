@@ -19,8 +19,8 @@ class RestauranteCafeteriasController{
     async getById(req, res){
         try {
             this.service = new RestauranteCafeteriasService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const restaurante = await this.service.getById(req.query.id);
+            res.json(restaurante);
         } catch (error) {
             new ClientError(400, "Error al obtener los RestauranteCafeterias Controlador");
             throw error.message;
@@ -30,7 +30,7 @@ class RestauranteCafeteriasController{
         try {
             this.service = new RestauranteCafeteriasService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los RestauranteCafeterias Controlador");
             throw error.message;

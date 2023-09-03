@@ -7,6 +7,62 @@ class EmpleadosSchema {
         this.collection = this.database.collection(this.entity);
     }
 
+    static properties(){
+        return {
+            _id: {
+                bsonType: "objectId",
+            },
+            nombre_completo: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo complete_name y este debe ser un string",
+            },
+            cargo: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo assigned_position y este debe ser un string",
+            },
+            direccion: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo address y este debe ser un string",
+            },
+            email: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                description:
+                    "Debe informar un campo Email válido",
+            },
+            telefono: {
+                bsonType: "string",
+                pattern: "^[0-9-]*$",
+                description:
+                    "Debe informar el campo phone_number y este debe ser un string",
+            },
+            area_asignada: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo belonging_area y este debe ser un string",
+            },
+            zona: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo zone y este debe ser un string",
+            },
+            jornada: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description:
+                    "Debe informar el campo schedule y este debe ser un string",
+            },
+        }
+    }
+
     async generateCollection() {
         try {
             await this.database.createCollection(this.entity, {

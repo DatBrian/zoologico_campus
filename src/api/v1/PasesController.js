@@ -19,8 +19,8 @@ class PasesController{
     async getById(req, res){
         try {
             this.service = new PasesService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const pase = await this.service.getById(req.query.id);
+            res.json(pase);
         } catch (error) {
             new ClientError(400, "Error al obtener los Pases Controlador");
             throw error.message;
@@ -30,7 +30,7 @@ class PasesController{
         try {
             this.service = new PasesService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los Pases Controlador");
             throw error.message;
