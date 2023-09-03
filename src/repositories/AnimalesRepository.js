@@ -6,7 +6,6 @@ class AnimalesRepository extends Connection{
         super();
         this.entity = "animales";
     }
-
     async getAll(){
         try {
             await this.connect();
@@ -24,10 +23,9 @@ class AnimalesRepository extends Connection{
                     "zone":"$zona",
                     "belonging_area":"$area"
                 }
-            }]);
+            }]).toArray();
         } catch (error) {
-            new ClientError(400, `Error al obtener en ${this.entity}`);
-            throw error.message;
+            throw new ClientError(400, `Error al obtener en ${this.entity}: ${error.message}`);
         }
     }
     async getById(id){
@@ -52,7 +50,7 @@ class AnimalesRepository extends Connection{
                     "belonging_area":"$area"
                 }
             }
-        ]);
+        ]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -77,7 +75,7 @@ class AnimalesRepository extends Connection{
             );
             return `${this.entity} updated successfully`
         } catch (error) {
-            new ClientError(400, `Error al actualizar la data en ${this.entity}`);
+            new ClientError(304, `Error al actualizar la data en ${this.entity}`);
             throw error.message;
         }
     }
@@ -87,7 +85,7 @@ class AnimalesRepository extends Connection{
             await this.getDatabase().collection(this.entity).deleteOne(id);
             return `${this.entity} deleted succesfully`
         } catch (error) {
-            new ClientError(400, `Error al borrar la data en ${this.entity}`);
+            new ClientError(304, `Error al borrar la data en ${this.entity}`);
         }
     }
 }

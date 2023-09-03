@@ -23,7 +23,7 @@ class EmpleadosRepository extends Connection{
                     "zone":"$zona",
                     "schedule":"$jornada"
                 }
-            }]);
+            }]).toArray();
         } catch (error) {
             new ClientError(400, `Error al obtener en ${this.entity}`);
             throw error.message;
@@ -50,9 +50,9 @@ class EmpleadosRepository extends Connection{
                     "schedule":"$jornada"
                 }
             }
-        ]);
+        ]).toArray();
         } catch (error) {
-            new ClientError(400, `Error al obtener en ${this.entity}`);
+            new ClientError(304, `Error al obtener en ${this.entity}`);
             throw error.message;
         }
     }
@@ -62,7 +62,7 @@ class EmpleadosRepository extends Connection{
             await this.getDatabase().collection(this.entity).insertOne(body);
             return `${this.entity} inserted successfully`
         } catch (error) {
-            new ClientError(400, `Error al ingresar la data en ${this.entity}`);
+            new ClientError(304, `Error al ingresar la data en ${this.entity}`);
             throw error.message;
         }
     }
