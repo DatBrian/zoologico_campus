@@ -8,7 +8,6 @@ class ServiciosController{
 
     async getAll(_req, res){
         try {
-            console.log("asdasa");
             this.service = new ServiciosService();
             const Servicios = await this.service.getAll();
             res.json(Servicios);
