@@ -1,55 +1,35 @@
-import { ObjectId } from "mongodb";
+import {
+        ObjectId
+} from "mongodb";
 import RestauranteCafeteriasRepository from "../repositories/RestauranteCafeteriasRepository.js";
 import ClientError from "../utils/ClientError.js";
 
-class RestauranteCafeteriasService   {
-    constructor(){
-        this.repository = null;
-    }
-
-    async getAll(){
-        try {
-            this.repository = new RestauranteCafeteriasRepository();
-            return await this.repository.getAll();
-        } catch (error) {
-            new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
-            throw error.message;
+class RestauranteCafeteriasService {
+        constructor() {
+                this.repository = null;
         }
-    }
-    async getById(id){
-        try {
-            const objectId = new ObjectId;
-            return await this.repository.getByid(objectId);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
-            throw error.message;
+        async getAll() {
+                this.repository = new RestauranteCafeteriasRepository();
+                return await this.repository.getAll();
         }
-    }
-    async insertOne(body){
-        try {
-            return await this.repository.insertOne(body);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
-            throw error.message;
+        async getById(id) {
+                this.repository = new RestauranteCafeteriasRepository();
+                const objectId = new ObjectId(id);
+                return await this.repository.getById(objectId);
         }
-    }
-    async updateOne(id,body){
-        try {
-            const ObjectId =  new ObjectId(id)
-            return await this.repository.updateOne(ObjectId, body);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
-            throw error.message;
+        async insertOne(body) {
+                this.repository = new RestauranteCafeteriasRepository();
+                return await this.repository.insertOne(body);
         }
-    }
-    async deleteOne(id){
-        try {
-            const ObjectId =  new ObjectId(id)
-            return await this.repository.updateOne(ObjectId);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
-            throw error.message;
+        async updateOne(id, body) {
+                this.repository = new RestauranteCafeteriasRepository();
+                const objectId = new ObjectId(id)
+                return await this.repository.updateOne(objectId, body);
         }
-    }
+        async deleteOne(id) {
+                this.repository = new RestauranteCafeteriasRepository();
+                const objectId = new ObjectId(id)
+                return await this.repository.deleteOne(objectId);
+        }
 }
 export default RestauranteCafeteriasService;

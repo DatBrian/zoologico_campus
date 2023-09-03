@@ -1,10 +1,10 @@
 import { SignJWT, jwtVerify } from "jose"
-import {coneccion} from "../db/atlas.js"; //?aca va la direccion a la coneccion
+import Connection from "../db/Connection.js"; //?aca va la direccion a la coneccion
 import { ObjectId } from "mongodb";
 import dotenv from 'dotenv';
 dotenv.config("../");
 
-const conexionDB = await coneccion();
+const conexionDB = await Connection();
 const crearToken = async (req, res, next) => {
     console.log(req.body);
     if (Object.keys(req.body).length === 0) return res.status(400).send({mesaage: "Datos no enviados"});

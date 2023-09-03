@@ -19,8 +19,8 @@ class EmpleadosController{
     async getById(req, res){
         try {
             this.service = new EmpleadosService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const Empleado = await this.service.getById(req.query.id);
+            res.json(Empleado);
         } catch (error) {
             new ClientError(400, "Error al obtener los Empleados Controlador");
             throw error.message;

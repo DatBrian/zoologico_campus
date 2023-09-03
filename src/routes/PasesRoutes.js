@@ -7,7 +7,7 @@ import { PasesDTO } from "../models/dto/PasesDTO.js";
 
 class PasesRoutes{
     constructor(){
-        this.path = "/Pases";
+        this.path = "/pases";
         this.router = Router();
         this.controller = new PasesController(),
         this.version = routesVersioning();
@@ -17,7 +17,8 @@ class PasesRoutes{
     initRoutes(){
         this.router.get(`${this.path}/all/:id?`,
         this.version({
-            "1.0.0": this.controller.getAll
+            "1.0.0": this.controller.getAll,
+            "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(PasesDTO).validate(),

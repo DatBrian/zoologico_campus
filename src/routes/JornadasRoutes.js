@@ -7,7 +7,7 @@ import { JornadasDTO } from "../models/dto/JornadasDTO.js";
 
 class JornadasRoutes{
     constructor(){
-        this.path = "/Jornadas";
+        this.path = "/jornadas";
         this.router = Router();
         this.controller = new JornadasController(),
         this.version = routesVersioning();
@@ -17,7 +17,8 @@ class JornadasRoutes{
     initRoutes(){
         this.router.get(`${this.path}/all/:id?`,
         this.version({
-            "1.0.0": this.controller.getAll
+            "1.0.0": this.controller.getAll,
+            "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(JornadasDTO).validate(),

@@ -7,7 +7,7 @@ import { EventosDTO } from "../models/dto/EventosDTO.js";
 
 class EventosRoutes{
     constructor(){
-        this.path = "/Eventos";
+        this.path = "/eventos";
         this.router = Router();
         this.controller = new EventosController(),
         this.version = routesVersioning();
@@ -17,7 +17,8 @@ class EventosRoutes{
     initRoutes(){
         this.router.get(`${this.path}/all/:id?`,
         this.version({
-            "1.0.0": this.controller.getAll
+            "1.0.0": this.controller.getAll,
+            "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(EventosDTO).validate(),
