@@ -4,11 +4,12 @@ import ClientError from "../utils/ClientError.js";
 
 class RestauranteCafeteriasService   {
     constructor(){
-        this.repository = new RestauranteCafeteriasRepository();
+        this.repository = null;
     }
 
     async getAll(){
         try {
+            this.repository = new RestauranteCafeteriasRepository();
             return await this.repository.getAll();
         } catch (error) {
             new ClientError(400, "Error al obtener los RestauranteCafeterias Servicio");
