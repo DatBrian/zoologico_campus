@@ -3,11 +3,12 @@ import ClientError from "../../utils/ClientError.js";
 
 class PasesController{
     constructor(){
-        this.service = new PasesService();
+        this.service = null;
     }
 
     async getAll(_req, res){
         try {
+            this.service = new PasesService();
             const Pases = await this.service.getAll();
             res.json(Pases);
         } catch (error) {
@@ -17,6 +18,7 @@ class PasesController{
     }
     async getById(req, res){
         try {
+            this.service = new PasesService();
             const animal = await this.service.getById(req.query.id);
             res.json(animal);
         } catch (error) {
@@ -26,6 +28,7 @@ class PasesController{
     }
     async insertOne (req, res){
         try {
+            this.service = new PasesService();
             const response = await this.service.insertOne(req.body);
             res,json(response)
         } catch (error) {
@@ -35,6 +38,7 @@ class PasesController{
     }
     async updateOne (req, res){
         try {
+            this.service = new PasesService();
             const body = await req.body;
             const id = await req.query.id;
             const response = await this.service.updateOne(id, body);
@@ -46,6 +50,7 @@ class PasesController{
     }
     async deleteOne (req, res){
         try {
+            this.service = new PasesService();
             const response = await this.service.deleteOne(req.query.id);
             res.json(response);
         } catch (error) {

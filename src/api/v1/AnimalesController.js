@@ -3,11 +3,12 @@ import ClientError from "../../utils/ClientError.js";
 
 class AnimalesController{
     constructor(){
-        this.service = new AnimalesService();
+        this.service = null;
     }
 
     async getAll(_req, res){
         try {
+            this.service= new AnimalesService();
             const animales = await this.service.getAll();
             res.json(animales);
         } catch (error) {
@@ -17,6 +18,7 @@ class AnimalesController{
     }
     async getById(req, res){
         try {
+            this.service= new AnimalesService();
             const animal = await this.service.getById(req.query.id);
             res.json(animal);
         } catch (error) {
@@ -26,6 +28,7 @@ class AnimalesController{
     }
     async insertOne (req, res){
         try {
+            this.service= new AnimalesService();
             const response = await this.service.insertOne(req.body);
             res,json(response)
         } catch (error) {
@@ -35,6 +38,7 @@ class AnimalesController{
     }
     async updateOne (req, res){
         try {
+            this.service= new AnimalesService();
             const body = await req.body;
             const id = await req.query.id;
             const response = await this.service.updateOne(id, body);
@@ -46,6 +50,7 @@ class AnimalesController{
     }
     async deleteOne (req, res){
         try {
+            this.service= new AnimalesService();
             const response = await this.service.deleteOne(req.query.id);
             res.json(response);
         } catch (error) {
