@@ -523,21 +523,34 @@ db.servicios.aggregate([
     }
 ]);
 
-//* Listar Servicios
+//* Listar jornadas
 use("db_zoologico");
-db.servicios.aggregate([
+db.jornadas.aggregate([
     {
         $project: {
             "_id":0,
             "id":"$_id",
-            "producto":"$producto",
-            "descripcion":"$descripcion",
-            "cantidad":"$cantidad",
-            "precio":"$precio",
-            "area":"$area",
-            "zona":"$zona",
-            "horario_apertura":"$horario_apertura",
-            "horario_cierre":"$horario_cierre"
+            "schedule":"$nombre_jornada",
+            "entry_time":"$horario_entrada",
+            "departure_time":"$horario_salida",
+        }
+    }
+]);
+
+
+//* Listar cafeterias y restaurantes
+use("db_zoologico");
+db.restauranteCafeteria.aggregate([
+    {
+        $project: {
+            "_id":0,
+            "id":"$_id",
+            "product":"$producto",
+            "description":"$descripcion",
+            "amount":"$cantidad",
+            "price":"$precio",
+            "place":"$lugar",
+            "schedule":"$jornada",
         }
     }
 ]);
