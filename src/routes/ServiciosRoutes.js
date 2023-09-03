@@ -7,7 +7,7 @@ import { ServiciosDTO } from "../models/dto/ServiciosDTO.js";
 
 class ServiciosRoutes{
     constructor(){
-        this.path = "/Servicios";
+        this.path = "/servicios";
         this.router = Router();
         this.controller = new ServiciosController(),
         this.version = routesVersioning();
@@ -17,7 +17,8 @@ class ServiciosRoutes{
     initRoutes(){
         this.router.get(`${this.path}/all/:id?`,
         this.version({
-            "1.0.0": this.controller.getAll
+            "1.0.0": this.controller.getAll,
+            "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(ServiciosDTO).validate(),

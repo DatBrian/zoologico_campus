@@ -9,8 +9,8 @@ class AnimalesController{
     async getAll(_req, res){
         try {
             this.service= new AnimalesService();
-            const animales = await this.service.getAll();
-            res.json(animales);
+            const Animales = await this.service.getAll();
+            res.json(Animales);
         } catch (error) {
             new ClientError(400, "Error al obtener los animales Controlador");
             throw error.message;
@@ -19,8 +19,8 @@ class AnimalesController{
     async getById(req, res){
         try {
             this.service= new AnimalesService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const Animal = await this.service.getById(req.query.id);
+            res.json(Animal);
         } catch (error) {
             new ClientError(400, "Error al obtener los animales Controlador");
             throw error.message;
@@ -51,6 +51,7 @@ class AnimalesController{
     async deleteOne (req, res){
         try {
             this.service= new AnimalesService();
+            console.log(req.query.id);
             const response = await this.service.deleteOne(req.query.id);
             res.json(response);
         } catch (error) {

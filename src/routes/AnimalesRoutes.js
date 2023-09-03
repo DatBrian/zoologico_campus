@@ -18,6 +18,7 @@ class AnimalesRoutes{
         this.router.get(`${this.path}/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,
+            "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(AnimalesDTO).validate(),
@@ -34,7 +35,6 @@ class AnimalesRoutes{
             })
         })
         this.router.delete(`${this.path}/delete/:id?`,
-        new ValidateDTOMiddleware(AnimalesDTO).validate(),
         (req,res)=>{
             this.version({
                 "1.0.0": this.controller.deleteOne(req,res)

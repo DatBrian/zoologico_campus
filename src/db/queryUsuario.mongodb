@@ -1,4 +1,4 @@
-use("db_incidencias");
+use("db_zoologico");
 db.createCollection("usuario",{
     validator: {
         $jsonSchema: {
@@ -48,7 +48,7 @@ db.createCollection("usuario",{
         }
     }
 });
-use("db_incidencias");
+use("db_zoologico");
 db.usuario.insertMany([
     {
         cc: 1097490746,
@@ -70,7 +70,7 @@ db.usuario.insertMany([
         }
     }
 ]);
-use("db_incidencias");
+use("db_zoologico");
 db.createCollection("rol",{
     validator: {
         $jsonSchema: {
@@ -99,12 +99,12 @@ db.createCollection("rol",{
         }
     }
 });
-use("db_incidencias");
+use("db_zoologico");
 db.createCollection("autoincrement");
 db.autoincrement.insertOne(
     { _id: "rolId", sequence_value: 0 },
 );
-use("db_incidencias");
+use("db_zoologico");
 function increment(coleccion) {
     const sequenceDocument = db.autoincrement.findOneAndUpdate(
         { _id: `${coleccion}Id` },
@@ -124,7 +124,7 @@ db.rol.insertMany([
     },
 ]);
 // Permiso del enpoint 
-use("db_incidencias");
+use("db_zoologico");
 db.usuario.findOne(
     {
         _id: new ObjectId("64e5f380ef6f06f2c41473e2"),
@@ -133,5 +133,5 @@ db.usuario.findOne(
 );
   
 
-use('db_incidencias');
+use('db_zoologico');
 db.usuario.find();

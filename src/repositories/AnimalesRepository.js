@@ -80,13 +80,12 @@ class AnimalesRepository extends Connection{
         }
     }
     async deleteOne(id){
-        try {
+            console.log(id);
             await this.connect();
-            await this.getDatabase().collection(this.entity).deleteOne(id);
+            await this.getDatabase().collection(this.entity).deleteOne(
+                {"_id": id}
+            );
             return `${this.entity} deleted succesfully`
-        } catch (error) {
-            new ClientError(304, `Error al borrar la data en ${this.entity}`);
-        }
     }
 }
 export default AnimalesRepository;
