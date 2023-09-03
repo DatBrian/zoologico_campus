@@ -8,16 +8,20 @@ class ValidateDTOMiddleware {
 
     async mapProperties(req) {
         const updatedBody = {};
-        console.log(req.body);
+
+
         const properties = Object.keys(this.properties).filter(
             (key) => key !== "_id"
         );
-        console.log(this.properties);
-        
+
         const body = Object.values(req.body);
+
         for (let i = 0; i < properties.length; i++) {
             updatedBody[properties[i]] = body[i];
         }
+
+        console.log(updatedBody);
+
         return updatedBody;
     }
 
