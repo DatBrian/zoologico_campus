@@ -404,6 +404,7 @@ db.servicios.insertMany([
     {
         producto: "Comida para animales",
         descripcion: "Alimentación especializada para diferentes especies",
+        cantidad: 100,
         precio: 5000,
         area: "Cuidado de animales",
         zona: "Área de fauna",
@@ -413,6 +414,7 @@ db.servicios.insertMany([
     {
         producto: "Souvenirs",
         descripcion: "Recuerdos y regalos temáticos del zoológico",
+        cantidad: 500,
         precio: 1000,
         area: "Tienda de regalos",
         zona: "Área de souvenirs",
@@ -422,6 +424,7 @@ db.servicios.insertMany([
     {
         producto: "Visitas guiadas",
         descripcion: "Recorridos temáticos con guías especializados",
+        cantidad: 50,
         precio: 3000,
         area: "Interacción con visitantes",
         zona: "Área de visitas",
@@ -431,6 +434,7 @@ db.servicios.insertMany([
     {
         producto: "Fotografía de recuerdo",
         descripcion: "Sesiones de fotos con los animales",
+        cantidad: 20,
         precio: 8000,
         area: "Captura de momentos",
         zona: "Área fotográfica",
@@ -440,6 +444,7 @@ db.servicios.insertMany([
     {
         producto: "Actividades infantiles",
         descripcion: "Talleres y juegos para niños",
+        cantidad: 30,
         precio: 2000,
         area: "Área infantil",
         zona: "Zona de juegos",
@@ -449,6 +454,7 @@ db.servicios.insertMany([
     {
         producto: "Paseo en tren",
         descripcion: "Recorrido en tren por el zoológico",
+        cantidad: 3,
         precio: 5000,
         area: "Recorridos temáticos",
         zona: "Área de tren",
@@ -458,6 +464,7 @@ db.servicios.insertMany([
     {
         producto: "Área de picnic",
         descripcion: "Espacio para disfrutar de comidas al aire libre",
+        cantidad: 10,
         precio: 2000,
         area: "Descanso y alimentación",
         zona: "Área de picnic",
@@ -467,6 +474,7 @@ db.servicios.insertMany([
     {
         producto: "Encuentro con animales",
         descripcion: "Experiencia cercana con animales seleccionados",
+        cantidad: 15,
         precio: 7000,
         area: "Interacción con animales",
         zona: "Áreas designadas",
@@ -476,6 +484,7 @@ db.servicios.insertMany([
     {
         producto: "Cursos de fotografía",
         descripcion: "Clases para aprender a fotografiar la vida silvestre",
+        cantidad: 25,
         precio: 10000,
         area: "Educación ambiental",
         zona: "Área educativa",
@@ -485,6 +494,7 @@ db.servicios.insertMany([
     {
         producto: "Zona de descanso",
         descripcion: "Áreas con bancos para relajarse",
+        cantidad: 8,
         precio: 0,
         area: "Descanso y recreación",
         zona: "Diversas áreas",
