@@ -231,7 +231,7 @@ db.createCollection("servicios", {
         $jsonSchema: {
             bsonType: "object",
             additionalProperties: false,
-            required: ["producto", "descripcion", "cantidad", "precio","area", "zona", "horario_apertura", "horario_cierre"],
+            required: ["producto", "descripcion", "precio","area", "zona", "horario_apertura", "horario_cierre"],
             properties: {
                 _id: {
                     bsonType: 'objectId',
@@ -311,7 +311,7 @@ db.createCollection("jornadas", {
     }
 });
 use("db_zoologico");
-db.createCollection("restauranteCafeteria", {
+db.createCollection("restauranteCafeterias", {
     capped: true,
     size: 10000,
     max: 10,
