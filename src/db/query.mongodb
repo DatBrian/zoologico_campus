@@ -347,6 +347,7 @@ db.createCollection("restauranteCafeteria", {
                     maximum: 9999999,
                     pattern: "^[0-9,.#@\\s-]+$",
                     description: "El campo price debe ser un número y estar comprendido entre 0 y 9999999"
+
                 },
                 lugar: {
                     bsonType: "string",
