@@ -17,19 +17,10 @@ class ServiciosSchema {
                     $jsonSchema: {
                         bsonType: "object",
                         additionalProperties: false,
-                        required: [
-                            "producto",
-                            "descripcion",
-                            "cantidad",
-                            "precio",
-                            "area",
-                            "zona",
-                            "horario_apertura",
-                            "horario_cierre",
-                        ],
+                        required: ["producto", "descripcion", "precio","area", "zona", "horario_apertura", "horario_cierre"],
                         properties: {
                             _id: {
-                                bsonType: "objectId",
+                                bsonType: 'objectId',
                             },
                             producto: {
                                 bsonType: "string",
@@ -68,7 +59,7 @@ class ServiciosSchema {
                                 pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
                                 description: "Debe informar el campo closing_time y este debe ser un string"
                             }
-                        },
+                        }
                     },
                 },
             });
@@ -84,58 +75,95 @@ class ServiciosSchema {
         try {
             await this.collection.insertMany([
                 {
-                    producto: "Tour guiado",
-                    descripcion: "Recorrido por el zoológico con guía experto",
-                    cantidad: 30,
-                    precio: 15000,
-                    area: "Recorridos",
-                    zona: "Principal",
-                    horario_apertura: "09:00 am",
-                    horario_cierre: "05:00 pm",
-                },
-                {
-                    producto: "Alimentación de animales",
-                    descripcion:
-                        "Experiencia de alimentar a los animales supervisados por cuidadores",
-                    cantidad: 15,
+                    producto: "Comida para animales",
+                    descripcion: "Alimentación especializada para diferentes especies",
                     precio: 5000,
-                    area: "Interacción",
-                    zona: "Animales exóticos",
+                    area: "Cuidado de animales",
+                    zona: "Área de fauna",
+                    horario_apertura: "08:00 am",
+                    horario_cierre: "04:00 pm"
+                },
+                {
+                    producto: "Souvenirs",
+                    descripcion: "Recuerdos y regalos temáticos del zoológico",
+                    precio: 1000,
+                    area: "Tienda de regalos",
+                    zona: "Área de souvenirs",
                     horario_apertura: "10:00 am",
-                    horario_cierre: "03:00 pm",
+                    horario_cierre: "06:00 pm"
                 },
                 {
-                    producto: "Espectáculo de delfines",
-                    descripcion: "Show de delfines en el estadio acuático",
-                    cantidad: 100,
+                    producto: "Visitas guiadas",
+                    descripcion: "Recorridos temáticos con guías especializados",
+                    precio: 3000,
+                    area: "Interacción con visitantes",
+                    zona: "Área de visitas",
+                    horario_apertura: "09:00 am",
+                    horario_cierre: "05:00 pm"
+                },
+                {
+                    producto: "Fotografía de recuerdo",
+                    descripcion: "Sesiones de fotos con los animales",
+                    precio: 8000,
+                    area: "Captura de momentos",
+                    zona: "Área fotográfica",
+                    horario_apertura: "09:30 am",
+                    horario_cierre: "03:30 pm"
+                },
+                {
+                    producto: "Actividades infantiles",
+                    descripcion: "Talleres y juegos para niños",
+                    precio: 2000,
+                    area: "Área infantil",
+                    zona: "Zona de juegos",
+                    horario_apertura: "11:00 am",
+                    horario_cierre: "02:00 pm"
+                },
+                {
+                    producto: "Paseo en tren",
+                    descripcion: "Recorrido en tren por el zoológico",
+                    precio: 5000,
+                    area: "Recorridos temáticos",
+                    zona: "Área de tren",
+                    horario_apertura: "10:30 am",
+                    horario_cierre: "04:30 pm"
+                },
+                {
+                    producto: "Área de picnic",
+                    descripcion: "Espacio para disfrutar de comidas al aire libre",
+                    precio: 2000,
+                    area: "Descanso y alimentación",
+                    zona: "Área de picnic",
+                    horario_apertura: "09:00 am",
+                    horario_cierre: "06:00 pm"
+                },
+                {
+                    producto: "Encuentro con animales",
+                    descripcion: "Experiencia cercana con animales seleccionados",
+                    precio: 7000,
+                    area: "Interacción con animales",
+                    zona: "Áreas designadas",
+                    horario_apertura: "12:00 pm",
+                    horario_cierre: "03:00 pm"
+                },
+                {
+                    producto: "Cursos de fotografía",
+                    descripcion: "Clases para aprender a fotografiar la vida silvestre",
                     precio: 10000,
-                    area: "Shows",
-                    zona: "Delfinario",
-                    horario_apertura: "11:30 am",
-                    horario_cierre: "01:00 pm",
+                    area: "Educación ambiental",
+                    zona: "Área educativa",
+                    horario_apertura: "01:00 pm",
+                    horario_cierre: "04:00 pm"
                 },
                 {
-                    producto: "Campamento nocturno",
-                    descripcion:
-                        "Pasadía nocturno con fogata, observación de estrellas y actividades educativas",
-                    cantidad: 20,
-                    precio: 25000,
-                    area: "Eventos especiales",
-                    zona: "Área de camping",
-                    horario_apertura: "06:00 pm",
-                    horario_cierre: "08:00 am",
-                },
-                {
-                    producto: "Clase de fotografía de vida silvestre",
-                    descripcion:
-                        "Curso de fotografía con enfoque en capturar animales en su entorno natural",
-                    cantidad: 10,
-                    precio: 35000,
-                    area: "Educación",
-                    zona: "Bosque fotográfico",
-                    horario_apertura: "02:00 pm",
-                    horario_cierre: "06:00 pm",
-                },
+                    producto: "Zona de descanso",
+                    descripcion: "Áreas con bancos para relajarse",
+                    precio: 9000,
+                    area: "Descanso y recreación",
+                    zona: "Diversas áreas",
+                    horario_apertura: "09:00 am",
+                    horario_cierre: "06:00 pm"
+                }
             ]);
         } catch (error) {
             new ClientError(

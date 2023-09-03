@@ -73,45 +73,85 @@ class EventosSchema {
         try {
             await this.collection.insertMany([
                 {
-                    fecha: "2023-06-01",
-                    estado: "Activo",
-                    area: "Jardín Zoológico",
-                    descripcion: "Charla sobre conservación de tigres blancos",
-                    hora_inicio: "10:00 am",
-                    hora_finalizacion: "11:30 am",
-                },
-                {
-                    fecha: "2023-06-05",
-                    estado: "Activo",
-                    area: "Aviario",
-                    descripcion: "Exhibición de aves exóticas",
+                    fecha: new Date(2023,9,15),
+                    estado: "Próximo",
+                    area: "Anfiteatro",
+                    descripcion: "Show de aves rapaces",
                     hora_inicio: "11:00 am",
-                    hora_finalizacion: "12:30 pm",
+                    hora_finalizacion: "12:00 pm"
                 },
                 {
-                    fecha: "2023-06-10",
-                    estado: "Activo",
+                    fecha: new Date(2023,8,20),
+                    estado: "En curso",
+                    area: "Pabellón de primates",
+                    descripcion: "Charla sobre comportamiento de primates",
+                    hora_inicio: "02:30 pm",
+                    hora_finalizacion: "03:30 pm"
+                },
+                {
+                    fecha: new Date(2023,7,10),
+                    estado: "Concluido",
                     area: "Acuario",
                     descripcion: "Alimentación de tiburones",
-                    hora_inicio: "2:00 pm",
-                    hora_finalizacion: "2:30 pm",
+                    hora_inicio: "10:30 am",
+                    hora_finalizacion: "11:00 am"
                 },
                 {
-                    fecha: "2023-06-15",
-                    estado: "Activo",
-                    area: "Safari",
-                    descripcion: "Recorrido por la zona de los leones",
-                    hora_inicio: "3:30 pm",
-                    hora_finalizacion: "5:00 pm",
+                    fecha: new Date(2023,9,1),
+                    estado: "Próximo",
+                    area: "Teatro Submarino",
+                    descripcion: "Danza acuática con delfines",
+                    hora_inicio: "03:00 pm",
+                    hora_finalizacion: "04:00 pm"
                 },
                 {
-                    fecha: "2023-06-20",
-                    estado: "Activo",
-                    area: "Anfiteatro",
-                    descripcion: "Espectáculo de delfines",
-                    hora_inicio: "12:00 pm",
-                    hora_finalizacion: "1:00 pm",
+                    fecha: new Date(2023,8,25),
+                    estado: "En curso",
+                    area: "Terrario de reptiles",
+                    descripcion: "Demostración de serpientes venenosas",
+                    hora_inicio: "01:00 pm",
+                    hora_finalizacion: "01:30 pm"
                 },
+                {
+                    fecha: new Date(2023,7,15),
+                    estado: "Concluido",
+                    area: "Jardín de mariposas",
+                    descripcion: "Liberación de mariposas monarca",
+                    hora_inicio: "11:30 am",
+                    hora_finalizacion: "12:00 pm"
+                },
+                {
+                    fecha: new Date(2023,9,5),
+                    estado: "Próximo",
+                    area: "Pista de cetrería",
+                    descripcion: "Demostración de vuelo de aves rapaces",
+                    hora_inicio: "02:00 pm",
+                    hora_finalizacion: "03:00 pm"
+                },
+                {
+                    fecha: new Date(2023,8,10),
+                    estado: "En curso",
+                    area: "Terrario de insectos",
+                    descripcion: "Charla sobre la importancia de los insectos en el ecosistema",
+                    hora_inicio: "10:00 am",
+                    hora_finalizacion: "11:00 am"
+                },
+                {
+                    fecha: new Date(2023,7,20),
+                    estado: "Concluido",
+                    area: "Hábitat de lémures",
+                    descripcion: "Interacción con lémures",
+                    hora_inicio: "03:30 pm",
+                    hora_finalizacion: "04:30 pm"
+                },
+                {
+                    fecha: new Date(2023,9,8),
+                    estado: "Próximo",
+                    area: "Teatro Submarino",
+                    descripcion: "Espectáculo de acrobacias con delfines",
+                    hora_inicio: "04:30 pm",
+                    hora_finalizacion: "05:30 pm"
+                }
             ]);
         } catch (error) {
             new ClientError(

@@ -3,7 +3,7 @@ import ClientError from "../../utils/ClientError.js";
 class PaseSchema {
     constructor(database) {
         this.database = database;
-        this.entity = "pase";
+        this.entity = "pases";
         this.collection = this.database.collection(this.entity);
     }
 
