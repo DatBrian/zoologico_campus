@@ -3,6 +3,7 @@ import routesVersioning from "express-routes-versioning";
 import PasesController from "../api/v1/PasesController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { PasesDTO } from "../models/dto/PasesDTO.js";
+import PasesSchema from "../models/schemas/PasesSchema.js"
 
 
 class PasesRoutes{
@@ -12,6 +13,7 @@ class PasesRoutes{
         this.controller = new PasesController(),
         this.version = routesVersioning();
         this.initRoutes();
+        this.schema = null;
     }
 
     initRoutes(){
@@ -21,14 +23,14 @@ class PasesRoutes{
             "1.0.1": this.controller.getById
         }));
         this.router.post(`${this.path}/insert`,
-        new ValidateDTOMiddleware(PasesDTO).validate(),
+        new ValidateDTOMiddleware(PasesDTO, PasesSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
         this.router.put(`${this.path}/update/:id?`,
-        new ValidateDTOMiddleware(PasesDTO).validate(),
+        new ValidateDTOMiddleware(PasesDTO, PasesSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)

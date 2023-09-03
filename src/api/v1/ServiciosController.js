@@ -20,8 +20,8 @@ class ServiciosController{
     async getById(req, res){
         try {
             this.service = new ServiciosService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const servicio = await this.service.getById(req.query.id);
+            res.json(servicio);
         } catch (error) {
             new ClientError(400, "Error al obtener los Servicios Controlador");
             throw error.message;
@@ -31,7 +31,7 @@ class ServiciosController{
         try {
             this.service = new ServiciosService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los Servicios Controlador");
             throw error.message;

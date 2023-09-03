@@ -7,6 +7,44 @@ class EventosSchema {
         this.collection = this.database.collection(this.entity);
     }
 
+    static properties(){
+        return{
+            _id: {
+                bsonType: "objectId",
+            },
+            fecha: {
+                bsonType: "date",
+                pattern:"^(?:\\d{4})-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$",
+                description: "Debe informar el campo date y este debe ser un string"
+            },
+            estado: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo state y este debe ser un string"
+            },
+            area: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo belonging_area y este debe ser un string"
+            },
+            descripcion: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo description_info y este debe ser un string"
+            },
+            hora_inicio: {
+                bsonType: "string",
+                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                description: "Debe informar el campo start_time y este debe ser un string"
+            },
+            hora_finalizacion: {
+                bsonType: "string",
+                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                description: "Debe informar el campo end_time y este debe ser un string"
+            }
+        }
+    }
+    
     async generateCollection() {
         try {
             await this.database.createCollection(this.entity, {

@@ -7,6 +7,29 @@ class JornadasSchema {
         this.collection = this.database.collection(this.entity);
     }
 
+    static properties(){
+        return{
+            _id: {
+                bsonType: 'objectId',
+            },
+            nombre_jornada: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                description: "Debe informar el campo schedule y este debe ser un string"
+            },
+            horario_entrada: {
+                bsonType: "string",
+                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                description: "Debe informar el campo entry_time y este debe ser un string"
+            },
+            horario_salida: {
+                bsonType: "string",
+                pattern: "^(0?[1-9]|1[0-2]):[0-5]\\d\\s?(am|pm|AM|PM)$",
+                description: "El campo departure_time debe ser un número y estar comprendido entre 0 y 9999"
+            }
+        }
+    }
+
     async generateCollection() {
         try {
             await this.database.createCollection(this.entity, {

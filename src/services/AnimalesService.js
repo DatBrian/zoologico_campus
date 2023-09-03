@@ -16,6 +16,14 @@ class AnimalesService {
                 const objectId = new ObjectId(id);
                 return await this.repository.getById(objectId);
         }
+        async getByAlphabeticOrder() {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getByAlphabeticOrder();
+        }
+        async getByClass(clase) {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getByClass(clase);
+        }
         async insertOne(body) {
                 this.repository = new AnimalesRepository();
                 return await this.repository.insertOne(body);

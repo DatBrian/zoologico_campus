@@ -2,7 +2,6 @@ import {
         ObjectId
 } from "mongodb";
 import JornadasRepository from "../repositories/JornadasRepository.js";
-import ClientError from "../utils/ClientError.js";
 
 class JornadasService {
         constructor() {

@@ -26,11 +26,31 @@ class AnimalesController{
             throw error.message;
         }
     }
+    async getByAlphabeticOrder(_req, res){
+        try {
+            this.service= new AnimalesService();
+            const AnimalesOrder = await this.service.getByAlphabeticOrder();
+            res.json(AnimalesOrder);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los animales Controlador");
+            throw error.message;
+        }
+    }
+    async getByClass(req, res){
+        try {
+            this.service= new AnimalesService();
+            const AnimalesClass = await this.service.getByClass(req.query.clase);
+            res.json(AnimalesClass);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los animales Controlador");
+            throw error.message;
+        }
+    }
     async insertOne (req, res){
         try {
             this.service= new AnimalesService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los animales Controlador");
             throw error.message;

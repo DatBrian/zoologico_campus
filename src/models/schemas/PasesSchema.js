@@ -1,10 +1,55 @@
 import ClientError from "../../utils/ClientError.js";
 
-class PaseSchema {
+class PasesSchema {
     constructor(database) {
         this.database = database;
         this.entity = "pases";
         this.collection = this.database.collection(this.entity);
+    }
+
+    static properties() {
+        return {
+            _id: {
+                bsonType: "objectId",
+            },
+            nombre: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo name y este debe ser un string"
+            },
+            tipo: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo type y este debe ser un string"
+            },
+            descripcion: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo description y este debe ser un string"
+            },
+            zonas: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo zone y este debe ser un string"
+            },
+            precios: {
+                bsonType: "number",
+                minimum: 0,
+                maximum: 9999999,
+                pattern: "^[0-9,.#@\\s-]+$",
+                description: "El campo prices debe ser un número y estar comprendido entre 0 y 9999999"
+            },
+            horario: {
+                bsonType: "string",
+                pattern: "^.*$",
+                description: "Debe informar el campo schedule y este debe ser un string"
+            },
+            dias: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
+                description: "Debe informar el campo days_opening y este debe ser un string"
+            }
+        }
     }
 
     async generateCollection() {
@@ -67,7 +112,7 @@ class PaseSchema {
                                 pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                                 description: "Debe informar el campo days_opening y este debe ser un string"
                             }
-                        },
+                        }
                     },
                 },
             });
@@ -81,8 +126,7 @@ class PaseSchema {
 
     async createData() {
         try {
-            await this.collection.insertMany([
-                {
+            await this.collection.insertMany([{
                     nombre: "Zona de Aves",
                     tipo: "Atracción",
                     descripcion: "Observa una variedad de aves exóticas",
@@ -94,8 +138,7 @@ class PaseSchema {
                 {
                     nombre: "Acuario Submarino",
                     tipo: "Atracción",
-                    descripcion:
-                        "Explora el mundo marino a través de cristales acrílicos",
+                    descripcion: "Explora el mundo marino a través de cristales acrílicos",
                     zonas: "Zona Oeste",
                     precios: 20000,
                     horario: "9:00 am - 6:00 pm",
@@ -122,8 +165,7 @@ class PaseSchema {
                 {
                     nombre: "Zona de Reptiles",
                     tipo: "Atracción",
-                    descripcion:
-                        "Observa de cerca a los reptiles más fascinantes",
+                    descripcion: "Observa de cerca a los reptiles más fascinantes",
                     zonas: "Zona Sur",
                     precios: 18000,
                     horario: "12:00 pm - 6:00 pm",
@@ -138,4 +180,4 @@ class PaseSchema {
         }
     }
 }
-export default PaseSchema;
+export default PasesSchema;

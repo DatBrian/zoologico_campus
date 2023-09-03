@@ -19,8 +19,8 @@ class EventosController{
     async getById(req, res){
         try {
             this.service = new EventosService();
-            const animal = await this.service.getById(req.query.id);
-            res.json(animal);
+            const evento = await this.service.getById(req.query.id);
+            res.json(evento);
         } catch (error) {
             new ClientError(400, "Error al obtener los Eventos Controlador");
             throw error.message;
@@ -30,7 +30,7 @@ class EventosController{
         try {
             this.service = new EventosService();
             const response = await this.service.insertOne(req.body);
-            res,json(response)
+            res.json(response)
         } catch (error) {
             new ClientError(400, "Error al insertar los Eventos Controlador");
             throw error.message;
