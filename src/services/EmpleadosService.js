@@ -4,51 +4,30 @@ import ClientError from "../utils/ClientError.js";
 
 class EmpleadosService   {
     constructor(){
-        this.repository = new EmpleadosRepository();
+        this.repository = null;
     }
-
     async getAll(){
-        try {
+            this.repository = new EmpleadosRepository();
             return await this.repository.getAll();
-        } catch (error) {
-            new ClientError(400, "Error al obtener los Empleados Servicio");
-            throw error.message;
-        }
     }
     async getById(id){
-        try {
+            this.repository = new EmpleadosRepository();
             const objectId = new ObjectId;
             return await this.repository.getByid(objectId);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los Empleados Servicio");
-            throw error.message;
-        }
     }
     async insertOne(body){
-        try {
+            this.repository = new EmpleadosRepository();
             return await this.repository.insertOne(body);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los Empleados Servicio");
-            throw error.message;
-        }
     }
     async updateOne(id,body){
-        try {
+            this.repository = new EmpleadosRepository();
             const ObjectId =  new ObjectId(id)
             return await this.repository.updateOne(ObjectId, body);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los Empleados Servicio");
-            throw error.message;
-        }
     }
     async deleteOne(id){
-        try {
+            this.repository = new EmpleadosRepository();
             const ObjectId =  new ObjectId(id)
             return await this.repository.updateOne(ObjectId);
-        } catch (error) {
-            new ClientError(400, "Error al obtener los Empleados Servicio");
-            throw error.message;
-        }
     }
 }
 export default EmpleadosService;
