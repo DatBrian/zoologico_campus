@@ -51,7 +51,6 @@ class AnimalesController{
     async deleteOne (req, res){
         try {
             this.service= new AnimalesService();
-            console.log(req.query.id);
             const response = await this.service.deleteOne(req.query.id);
             res.json(response);
         } catch (error) {
