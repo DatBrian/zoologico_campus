@@ -4,6 +4,8 @@ import RestauranteCafeteriasController from "../api/v1/RestauranteCafeteriasCont
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { RestauranteCafeteriasDTO } from "../models/dto/RestauranteCafeteriasDTO.js";
 import RestauranteCafeteriasSchema from "../models/schemas/RestauranteCafeteriasSchema.js"
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class RestauranteCafeteriasRoutes{
     constructor(){
@@ -16,6 +18,10 @@ class RestauranteCafeteriasRoutes{
     }
 
     initRoutes(){
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(`/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,

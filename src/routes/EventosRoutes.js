@@ -4,6 +4,8 @@ import EventosController from "../api/v1/EventosController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { EventosDTO } from "../models/dto/EventosDTO.js";
 import EventosSchema from "../models/schemas/EventosSchema.js"
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class EventosRoutes{
     constructor(){
@@ -16,6 +18,10 @@ class EventosRoutes{
     }
 
     initRoutes(){
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(`/all/:id?/:hora?`,
         this.version({
             "1.0.0": this.controller.getAll,

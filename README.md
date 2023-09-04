@@ -94,19 +94,6 @@ JWT_PRIVATE_KEY= ""
 En el campo de MY_SERVER ingrese un hostname y un puerto a su elección(preferiblemente mayor al 5000). Recuerde que por defecto el local host requiere que el hostname es 127.0.0.1. pero puede ser,
 ATLAS_USER es el usuario de la base de datos registrado en Atlas y ATLAS_PASSWORD es la contraseña que le asignamos, ATLAS_DB es el nombre de la base de datos y el JWT_PRIVATE_KEY es la palabra secreta que usaremos para generar los tokens de JWT(a su elección)
 
-Hemos Creado un Usuario con acceso a la db de Moongo npara el testeo:
-
-```
-HOST = localhost
-PORT = 5000
-API_VERSION = v1
-
-DB_USER = miguel
-DB_NAME = db_zoologico
-DB_PASSWORD = miguel
-
-JWT_PRIVATE_KEY= ""
-```
 
 <br><br>
 
@@ -118,6 +105,8 @@ npm run start:dev
 <br><br>
 
 # INSTALACION BASE DE DATOS
+
+## Primer Metodo: Desde La Extension de MongoDB para Visual Studio Code
 
 Teniendo una cuenta en MongoDB Atlas, ya registrado indicado en la documentacion
 https://github.com/JoseCabrejoVillarCampus/mongoDocumentacion
@@ -135,6 +124,97 @@ Diseño para la insercion de varios Datos para la tabla correspondiente alojasod
 
 <img src="./img/datainsert.png"><br><br>
 
+## Segundo Metodo: Usuario Temporal
+
+Se creo un usaurio temporal para acceder a la base de datos original con las colecciones ya creadas y sus respectivos inserts
+de prueba, para esto hay que ingresar en las variables de entorno dentro del archivo [.env](.env)
+
+Hemos Creado un Usuario con acceso a la db de Moongo para el testeo:
+
+```
+HOST = localhost
+PORT = 5000
+API_VERSION = v1
+
+DB_USER = miguel
+DB_NAME = db_zoologico
+DB_PASSWORD = miguel
+
+JWT_PRIVATE_KEY= ""
+```
+
+## Tercer Metodo: Generacion Automatizada de generacion de Esquemas, Colecciones e Inserts (by Brian Kaleth Melo)
+
+En este metodo consiste en generar automaticamente todos los esquemas y colecciones con sus respectivos datos de prueba al levantar el servidor, para utilizar este metodo, tendras que tener un cluster activo en mongoDB, donde se va a configurar la base de datos, Teniendo una cuenta en MongoDB Atlas, ya registrado indicado en la documentacion
+https://github.com/JoseCabrejoVillarCampus/mongoDocumentacion.
+
+Tener en cuenta que debemos configurar las variables de entorno con los respectivos datos de nuestro Atlas, en nuestro archivo [.env.example](.env.example), retiramos (.example) y dejamos solo ".env"
+
+
+```js 
+    HOST = localhost
+    PORT = 5000
+    API_VERSION = v1
+
+    DB_USER = ""
+    DB_NAME = ""
+    DB_PASSWORD = ""
+    DB_CLUSTER = ""
+
+    JWT_PRIVATE_KEY= ""
+```
+
+
+ Los primeros 3 datos se pueden dejar intactos y de preferencia no alterarlos por su seguridad. Los demás datos se obtienen directamente de la cadena de conexión generada en atlas, a continuación se muestra el paso a paso para dicho proceso:
+
+## 1. Iniciar Sesión en atlas:
+
+<img src="./img/atlaslogin.png">
+
+
+## 2. Buscar el cluster a usar y entra:
+
+<img src="./img/clusteratlas.png">
+
+## 3. Entra a la opción de conectar para obtener la cadena de conexión con el respectivo driver:
+
+<img src="./img/connect.png">
+
+<img src="./img/driver.png">
+
+<img src="./img/string.png">
+
+## 4. Si vas a instalar la base de datos en tu propio cluster copia la cadena de conexión y insertala
+
+<img src="./img/cluster.png">
+
+<span style="color:green;">Cluster</span>
+
+```js
+mongodb+srv://<username>:<password>@clusterdb.hicawdu.mongodb.net/?retryWrites=true&w=majority
+```
+
+Correcto <span style="color:green;">Cluster con las Constantes de las Varibles de Entorno</span>
+
+```js
+mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER}.${DB_IDENTIFIER}.mongodb.net/?retryWrites=true&w=majority
+```
+
+<span style="color:green;">Variables de Entorno</span>
+
+```js
+  HOST = localhost
+  PORT = 5000
+  API_VERSION = v1
+
+  DB_USER = cabre920903
+  DB_NAME = db_zoologico
+  DB_PASSWORD = onepiece
+  DB_CLUSTER = clusterdb
+  DB_IDENTIFIER = hicawdu
+
+  JWT_PRIVATE_KEY= zooCampus
+```
 # INSTALACION COLECCIONES USUARIO Y LOGIN
 
  Vamos a crear las colecciones <span style="color:green;">usuario</span> , <span style="color:green;">login</span> , <span style="color:green;">rol</span>,para la validacion por token del portador segun la strategia [http-passport-bearer](https://www.passportjs.org/packages/passport-http-bearer/), en nuestro proyecto [passPortHelper](src/helpers/passPortHelper.js), ademas de otras pequeñas cosas, que simplemente ahi que ejecutar con el boton RUN
@@ -155,21 +235,30 @@ http://localhost:5000/api/v1/auth/signup
     }
   }
 ```
-<img src="/img/user.png">
+<img src="./img/user.png">
 
-## Creación de las Colecciones
 
-<img src="./img/coleccion.png" ><br><br>
+## Inicio de sesion
 
-## Defininendo los Perimsos por Usuario
+```js
+  http://localhost:5000/api/v1/auth/signin
+```
 
-<img src="./img/permisos.png"><br><br>
+```js
+   {
+  "username": "Brian",
+  "password" : "contraseña"
+}
+```
 
-## Creacion del Autoincremental
+Correcto <span style="color:green;">[1.0.0]</span>
 
-Esta nos permite dar un id autoincremental a cada rol agregado
+<img src="./img/iniciocorrecto.png">
 
-<img src="./img/autoincrrementa.png"><br><br>
+Incorrecto <span style="color:green;">[1.0.0]</span>
+
+<img src="./img/iniciosesion.png">
+
 
 # GENERACION DE TOKEN DE ACCESO
 
@@ -200,13 +289,21 @@ Donde debemos pasarle un body con un nombre que tengamos creado ya en la base de
 ```
 <br><br>
 
-En este ejemplo vemos que "Jhon" y "Marcos", tienen permisos diferentes
-
-<img src="./img/emeplotoken.png" ><br><br>
-
 
 Este token tiene un limite de tiempo, en ese rango de tiempo podremos acceder a las rutas y endPoints de nuestra Api. Una vez pasada esta hora será necesario generar uno nuevo.<br><br>
 
+## IMPLEMENTACION DEL TOKEN DE PORTADOR
+
+Aca observamos la aplicacion de los permisos a las versiones segun el token del portador para cada usuario
+
+Correcto <span style="color:green;">[1.0.0]</span>
+
+<img src="./img/tokenCorrecto.png">
+
+
+Incorrecto <span style="color:green;">[1.0.0]</span>
+
+<img src="./img/tokenincorrecto.png">
 
 # CONSULTAS<br><br>
 

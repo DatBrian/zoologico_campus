@@ -57,7 +57,7 @@ class PasesRepository extends Connection {
             throw error.message;
         }
     }
-    async getAllTotal() {
+    async getAllTotalPass() {
         try {
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([

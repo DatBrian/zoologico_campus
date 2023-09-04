@@ -4,6 +4,8 @@ import JornadasController from "../api/v1/JornadasController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { JornadasDTO } from "../models/dto/JornadasDTO.js";
 import JornadasSchema from "../models/schemas/JornadasSchema.js"
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class JornadasRoutes{
     constructor(){
@@ -16,6 +18,10 @@ class JornadasRoutes{
     }
 
     initRoutes(){
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(`/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,

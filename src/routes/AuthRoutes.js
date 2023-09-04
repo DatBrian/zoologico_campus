@@ -6,6 +6,7 @@ import { crearToken } from "../helpers/JWT.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { UserDTO } from "../models/dto/UserDTO.js";
 import UserSchema from "../models/schemas/UserSchema.js";
+import { RegisterDTO } from "../models/dto/RegisterDTO.js";
 
 class AuthRoutes {
     constructor() {
@@ -21,6 +22,7 @@ class AuthRoutes {
         this.router.post(
             `/signin`,
             limitLogin(),
+            new ValidateDTOMiddleware(RegisterDTO, UserSchema.registerProperties()).validate(),
             crearToken,
             (req, res) => {
                 this.version({

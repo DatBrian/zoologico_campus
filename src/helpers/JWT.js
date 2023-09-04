@@ -2,6 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import Connection from "../db/Connection.js";
 import { ObjectId } from "mongodb";
 import dotenv from "dotenv";
+import UserSchema from "../models/schemas/UserSchema.js";
 dotenv.config();
 const crearToken = async (req, res, next) => {
     try {
@@ -9,21 +10,26 @@ const crearToken = async (req, res, next) => {
         await connection.connect();
         const conexionDB = await connection.getDatabase();
 
-        console.log(req.body);
-
         if (Object.keys(req.body).length === 0) {
             return res.status(400).send({ message: "Datos no enviados" });
         }
+        const {user, contraseña} = req.body
 
-        const result = await conexionDB.collection("user").findOne(req.body);
-        console.log(result);
+        const usuario = await conexionDB.collection("user").findOne({"user": user});
 
-        if (!result) {
-            return res.status(401).send({ message: "Usuario no encontrado" });
+        if (!usuario) {
+            return res.status(401).send({ message: `El usuario ${usuario} no fue encontrado` });
+        }
+
+
+        const passwordMatch = await UserSchema.matchPassword( contraseña, usuario.contraseña);
+
+        if (!passwordMatch) {
+            return res.status(401).send({ message: "Contraseña incorrecta" });
         }
 
         const encoder = new TextEncoder();
-        const id = result._id.toString();
+        const id = usuario._id.toString();
 
         const jwtConstructor = await new SignJWT({ id: id })
             .setProtectedHeader({ alg: "HS256", typ: "JWT" })
@@ -33,7 +39,7 @@ const crearToken = async (req, res, next) => {
 
         req.data = {
             status: 200,
-            message: "Usuario enconrado!! Toma tu token :D",
+            message: "Usuario encontrado!! Toma tu token :D",
             token: jwtConstructor,
         };
         next();

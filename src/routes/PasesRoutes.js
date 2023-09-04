@@ -4,7 +4,8 @@ import PasesController from "../api/v1/PasesController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { PasesDTO } from "../models/dto/PasesDTO.js";
 import PasesSchema from "../models/schemas/PasesSchema.js"
-
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class PasesRoutes{
     constructor(){
@@ -15,8 +16,12 @@ class PasesRoutes{
         this.initRoutes();
         this.schema = null;
     }
-
+    
     initRoutes(){
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(`/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,

@@ -8,6 +8,20 @@ class UserSchema {
         this.Collection = database.collection(this.entity);
     }
 
+    static registerProperties(){
+        return{
+            _id:{
+                bsonType: "objectId",
+            },
+            user:{
+                bsonType: "string"
+            },
+            contraseña:{
+                bsonType: "sting"
+            }
+        }
+    }
+
     static properties(){
         return {
             _id: {

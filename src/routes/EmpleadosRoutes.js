@@ -4,7 +4,8 @@ import EmpleadosController from "../api/v1/EmpleadosController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { EmpleadosDTO } from "../models/dto/EmpleadosDTO.js";
 import EmpleadosSchema from "../models/schemas/EmpleadosSchema.js"
-
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class EmpleadosRoutes{
     constructor(){
@@ -17,6 +18,10 @@ class EmpleadosRoutes{
     }
 
     initRoutes(){
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(`/all/:id?/:jornada?/:area?`,
         this.version({
             "1.0.0": this.controller.getAll,

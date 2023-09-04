@@ -29,7 +29,7 @@ class PasesController{
     async getAllTotal(_req, res){
         try {
             this.service = new PasesService();
-            const PasesTotal = await this.service.getAllTotal();
+            const PasesTotal = await this.service.getAllTotalPass();
             res.json(PasesTotal);
         } catch (error) {
             new ClientError(400, "Error al obtener los Pases Controlador");
