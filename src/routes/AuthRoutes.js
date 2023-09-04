@@ -3,6 +3,9 @@ import routesVersioning from "express-routes-versioning";
 import AuthController from "../api/v1/AuthController.js";
 import { limitLogin } from "../helpers/limit.js";
 import { crearToken } from "../helpers/JWT.js";
+import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
+import { UserDTO } from "../models/dto/UserDTO.js";
+import UserSchema from "../models/schemas/UserSchema.js";
 
 class AuthRoutes {
     constructor() {
@@ -27,6 +30,7 @@ class AuthRoutes {
         );
         this.router.post(
             `/signup`,
+            new ValidateDTOMiddleware(UserDTO, UserSchema.properties()).validate(),
             (req, res) => {
                 this.version({
                     "1.0.0": this.controller.createUser(req, res),

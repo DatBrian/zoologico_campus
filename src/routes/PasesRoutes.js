@@ -17,7 +17,7 @@ class PasesRoutes{
     }
 
     initRoutes(){
-        this.router.get(`${this.path}/all/:id?`,
+        this.router.get(`/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById,
@@ -25,21 +25,21 @@ class PasesRoutes{
             "1.0.3": this.controller.getAllLess,
             "1.0.4": this.controller.getAllTotal
         }));
-        this.router.post(`${this.path}/insert`,
+        this.router.post(`/insert`,
         new ValidateDTOMiddleware(PasesDTO, PasesSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
-        this.router.put(`${this.path}/update/:id?`,
+        this.router.put(`/update/:id?`,
         new ValidateDTOMiddleware(PasesDTO, PasesSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)
             })
         })
-        this.router.delete(`${this.path}/delete/:id?`,
+        this.router.delete(`/delete/:id?`,
         new ValidateDTOMiddleware(PasesDTO).validate(),
         (req,res)=>{
             this.version({

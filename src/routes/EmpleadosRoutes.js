@@ -17,28 +17,28 @@ class EmpleadosRoutes{
     }
 
     initRoutes(){
-        this.router.get(`${this.path}/all/:id?/:jornada?/:area?`,
+        this.router.get(`/all/:id?/:jornada?/:area?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById,
             "1.0.2": this.controller.getBySchedule,
             "1.0.3": this.controller.getByCargoArea
         }));
-        this.router.post(`${this.path}/insert`,
+        this.router.post(`/insert`,
         new ValidateDTOMiddleware(EmpleadosDTO, EmpleadosSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
-        this.router.put(`${this.path}/update/:id?`,
+        this.router.put(`/update/:id?`,
         new ValidateDTOMiddleware(EmpleadosDTO, EmpleadosSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)
             })
         })
-        this.router.delete(`${this.path}/delete/:id?`,
+        this.router.delete(`/delete/:id?`,
         new ValidateDTOMiddleware(EmpleadosDTO).validate(),
         (req,res)=>{
             this.version({

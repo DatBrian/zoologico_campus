@@ -16,26 +16,26 @@ class RestauranteCafeteriasRoutes{
     }
 
     initRoutes(){
-        this.router.get(`${this.path}/all/:id?`,
+        this.router.get(`/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById
         }));
-        this.router.post(`${this.path}/insert`,
+        this.router.post(`/insert`,
         new ValidateDTOMiddleware(RestauranteCafeteriasDTO, RestauranteCafeteriasSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
-        this.router.put(`${this.path}/update/:id?`,
+        this.router.put(`/update/:id?`,
         new ValidateDTOMiddleware(RestauranteCafeteriasDTO, RestauranteCafeteriasSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)
             })
         })
-        this.router.delete(`${this.path}/delete/:id?`,
+        this.router.delete(`/delete/:id?`,
         new ValidateDTOMiddleware(RestauranteCafeteriasDTO).validate(),
         (req,res)=>{
             this.version({

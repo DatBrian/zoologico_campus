@@ -137,7 +137,25 @@ Diseño para la insercion de varios Datos para la tabla correspondiente alojasod
 
 # INSTALACION COLECCIONES USUARIO Y LOGIN
 
-Ahora nos dirigimos dentro de la misma carpeta [db](db), esta vez en el archivo  [queryUsuario.mongodb](db/queryUsuario.mongodb), en este archivo vamos a crear las colecciones <span style="color:green;">usuario</span> , <span style="color:green;">login</span> , <span style="color:green;">rol</span>,para la validacion por token del portador segun la strategia [http-passport-bearer](https://www.passportjs.org/packages/passport-http-bearer/), en nuestro proyecto [passPortHelper](helpers/passPortHelper.js), ademas de otras peueñas cosas, que simplemente ahi que ejecutar con el boton RUN
+ Vamos a crear las colecciones <span style="color:green;">usuario</span> , <span style="color:green;">login</span> , <span style="color:green;">rol</span>,para la validacion por token del portador segun la strategia [http-passport-bearer](https://www.passportjs.org/packages/passport-http-bearer/), en nuestro proyecto [passPortHelper](src/helpers/passPortHelper.js), ademas de otras pequeñas cosas, que simplemente ahi que ejecutar con el boton RUN
+
+Para la Coleccion <span style="color:blue;">"usuario"</span>
+
+```
+http://localhost:5000/api/v1/auth/signup
+```
+
+```js
+   {
+    "username":"",
+    "password": "",
+    "role":[0],// el numero segun el rol
+    "permisos":{
+      "/animales" : "1.0.0"
+    }
+  }
+```
+<img src="/img/user.png">
 
 ## Creación de las Colecciones
 
@@ -155,7 +173,7 @@ Esta nos permite dar un id autoincremental a cada rol agregado
 
 # GENERACION DE TOKEN DE ACCESO
 
-En esta ocacion, hemos generado un token de acceso unico para cada usuario, basandonos en su esquema, rol y  permisos, este codigo lo podemos observar dentro de la carpeta [helpers](helpers), en el archivo [JWT.js](helpers/JWT.js)
+En esta ocacion, hemos generado un token de acceso unico para cada usuario, basandonos en su esquema, rol y  permisos, este codigo lo podemos observar dentro de la carpeta [helpers](src/helpers), en el archivo [JWT.js](src/helpers/JWT.js)
 
 Generar Token de acceso 
 
@@ -163,7 +181,7 @@ Generar Token de acceso
 del metodo POST
 
 ```js
-  http://${config.hostname}:${config.port}/login
+  http://localhost:5000/api/v1/auth/signin
 ```
 
 <img src="./img/token.png" ><br><br>
@@ -327,6 +345,7 @@ Para la Coleccion <span style="color:blue;">"restauranteCafeterias"</span>
     "schedule": "String"
   }
 ```
+
 
 <br><br>
 Para la Coleccion <span style="color:blue;">"servicios"</span>
