@@ -240,7 +240,7 @@ http://localhost:5000/api/v1/auth/signup
 con este usuario tendremos un usuario de testeo
 
 ```js
-{{
+{
     "username":"Micky",
     "password": "Montana",
     "role":[1],
@@ -337,7 +337,7 @@ con este usuario tendremos un usuario de testeo
         "1.1.0"
         ]
     }
-  }}
+  }
 ```
 
 
