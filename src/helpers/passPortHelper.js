@@ -10,7 +10,6 @@ passport.use(
         async function (req, token, done) {
             const usuario = await validarToken(req, token);
             if (!usuario) return done(null, false);
-            console.log("autenticando");
             return done(null, usuario);
         }
     )

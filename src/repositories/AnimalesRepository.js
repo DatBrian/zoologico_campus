@@ -170,12 +170,13 @@ class AnimalesRepository extends Connection{
     }
     async getBySubClassEstado(sub_clase, estado){
         try {
+            console.log(sub_clase, estado);
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([
                 {
                     $match: {
-                        sub_clase: sub_clase,
-                        estado: estado
+                        "subclase": sub_clase,
+                        "estado": estado
                     }
                 },
                 {

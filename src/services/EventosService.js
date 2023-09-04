@@ -2,7 +2,6 @@ import {
         ObjectId
 } from "mongodb";
 import EventosRepository from "../repositories/EventosRepository.js";
-import ClientError from "../utils/ClientError.js";
 
 class EventosService {
         constructor() {

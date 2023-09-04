@@ -76,7 +76,7 @@ class EventosRepository extends Connection{
             throw error.message;
         }
     }
-    async getById(hora){
+    async getByHour(hora){
         try {
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([

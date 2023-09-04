@@ -29,8 +29,8 @@ class EventosController{
     async getById(req, res){
         try {
             this.service = new EventosService();
-            const evento = await this.service.getById(req.query.id);
-            res.json(evento);
+            const Evento = await this.service.getById(req.query.id);
+            res.json(Evento);
         } catch (error) {
             new ClientError(400, "Error al obtener los Eventos Controlador");
             throw error.message;

@@ -68,8 +68,9 @@ class AnimalesController{
     }
     async getBySubClassEstado(req, res){
         try {
+            console.log(req.query);
             this.service= new AnimalesService();
-            const AnimalesSubClassEstado = await this.service.getBySubClass[req.query.sub_clase,req.query.estado];
+            const AnimalesSubClassEstado = await this.service.getBySubClassEstado(req.query.sub_clase,req.query.estado);
             res.json(AnimalesSubClassEstado);
         } catch (error) {
             new ClientError(400, "Error al obtener los animales Controlador");

@@ -55,16 +55,11 @@ const validarToken = async (req, token) => {
         const connection = new Connection();
         await connection.connect();
         const conexionDB = await connection.getDatabase();
-        console.log(req.baseUrl);
         const encoder = new TextEncoder();
         const jwtData = await jwtVerify(
             token,
             encoder.encode(process.env.JWT_PRIVATE_KEY)
         );
-        console.log({
-            _id: new ObjectId(jwtData.payload.id),
-            [`permisos.${req.baseUrl}`]: `${req.headers["accept-version"]}`,
-        });
         let res = await conexionDB.collection("user").findOne({
             _id: new ObjectId(jwtData.payload.id),
             [`permisos.${req.baseUrl}`]: `${req.headers["accept-version"]}`,

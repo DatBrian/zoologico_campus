@@ -235,6 +235,112 @@ http://localhost:5000/api/v1/auth/signup
     }
   }
 ```
+
+<span style="color:green;">Usuario Autorizado para todos las Rutas</span>
+con este usuario tendremos un usuario de testeo
+
+```js
+{{
+    "username":"Micky",
+    "password": "Montana",
+    "role":[1],
+    "permisos":{
+      "/api/v1/animales" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/pases" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/empleados" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/jornadas" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/servicios" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/restauranteCafeterias" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ],
+        "/api/v1/eventos" : [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.0.3",
+        "1.0.4",
+        "1.0.5",
+        "1.0.6",
+        "1.0.7",
+        "1.0.8",
+        "1.0.9",
+        "1.1.0"
+        ]
+    }
+  }}
+```
+
+
 <img src="./img/user.png">
 
 
@@ -569,7 +675,7 @@ En la version <span style="color:green;">[1.0.5]</span>
 En la version <span style="color:green;">[1.0.6]</span>
 
 ```js
-  http://${config.hostname}:${config.port}/api/v1/animales/all?sub_clase=Theria&?estado=Vulnerable
+  http://${config.hostname}:${config.port}/api/v1/animales/all?sub_clase=Theria&estado=Vulnerable
 ```
 
 ## Empleados por Jornada (Tiempo completo, Medio tiempo)
