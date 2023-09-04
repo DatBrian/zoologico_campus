@@ -9,6 +9,9 @@ import dotenv from "dotenv";
 import SetupDb from "./db/SetupDb.js";
 import { schemas } from "./models/schemas/index.js";
 import ClientError from "./utils/ClientError.js";
+import { limitUsuario } from "./helpers/limit.js";
+import passportHelper from "../src/helpers/passPortHelper.js";
+import AuthRoutes from "./routes/AuthRoutes.js";
 
 dotenv.config();
 
@@ -74,8 +77,9 @@ class App extends Connection {
     }
 
     initRoutes(routes) {
+        this.app.use(`/api/v1/auth`, new AuthRoutes().router);
         routes.forEach((route) => {
-            this.app.use(`/api/${process.env.API_VERSION}`, route.router);
+            this.app.use(`/api/v1${route.path}`, route.router);
         });
     }
 
