@@ -463,7 +463,7 @@ use("db_zoologico");
 db.pase.aggregate([
     {
         $match: {
-            zonas:"Todas las áreas"
+            zonas:"Zona de Reptiles"
         }
     },
     {

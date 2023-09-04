@@ -28,6 +28,62 @@ class PasesRepository extends Connection {
             throw error.message;
         }
     }
+    async getAllLess() {
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {
+                        precios:{
+                            $lte:30000
+                        }
+                    }
+                },
+                {
+                $project: {
+                    "_id": 0,
+                    "id": "$_id",
+                    "name": "$nombre",
+                    "type": "$tipo",
+                    "description": "$descripcion",
+                    "zone": "$zonas",
+                    "prices": "$precios",
+                    "schedule": "$horario",
+                    "days_opening": "$dias",
+                }
+            }]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
+    async getAllTotal() {
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {
+                        zonas:"Zona Norte"
+                    }
+                },
+                {
+                $project: {
+                    "_id": 0,
+                    "id": "$_id",
+                    "name": "$nombre",
+                    "type": "$tipo",
+                    "description": "$descripcion",
+                    "zone": "$zonas",
+                    "prices": "$precios",
+                    "schedule": "$horario",
+                    "days_opening": "$dias",
+                }
+            }]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
     async getById(id) {
         try {
             await this.connect();
@@ -35,6 +91,33 @@ class PasesRepository extends Connection {
                     $match: {
                         "_id": id
                     }
+                },
+                {
+                    $project: {
+                        "_id": 0,
+                        "id": "$_id",
+                        "name": "$nombre",
+                        "type": "$tipo",
+                        "description": "$descripcion",
+                        "zone": "$zonas",
+                        "prices": "$precios",
+                        "schedule": "$horario",
+                        "days_opening": "$dias",
+                    }
+                }
+            ]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
+    async getByTipo(tipo) {
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([{
+                $match: {
+                    tipo: tipo
+                }
                 },
                 {
                     $project: {

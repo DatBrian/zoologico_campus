@@ -46,6 +46,36 @@ class AnimalesController{
             throw error.message;
         }
     }
+    async getBySubClass(req, res){
+        try {
+            this.service= new AnimalesService();
+            const AnimalesSubClass = await this.service.getBySubClass(req.query.sub_clase);
+            res.json(AnimalesSubClass);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los animales Controlador");
+            throw error.message;
+        }
+    }
+    async getByZone(req, res){
+        try {
+            this.service= new AnimalesService();
+            const AnimalesZona = await this.service.getByZone(req.query.zona);
+            res.json(AnimalesZona);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los animales Controlador");
+            throw error.message;
+        }
+    }
+    async getBySubClassEstado(req, res){
+        try {
+            this.service= new AnimalesService();
+            const AnimalesSubClassEstado = await this.service.getBySubClass[req.query.sub_clase,req.query.estado];
+            res.json(AnimalesSubClassEstado);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los animales Controlador");
+            throw error.message;
+        }
+    }
     async insertOne (req, res){
         try {
             this.service= new AnimalesService();

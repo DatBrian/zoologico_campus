@@ -24,6 +24,18 @@ class AnimalesService {
                 this.repository = new AnimalesRepository();
                 return await this.repository.getByClass(clase);
         }
+        async getBySubClass(sub_clase) {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getBySubClass(sub_clase);
+        }
+        async getBySubClassEstado(sub_clase, estado) {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getBySubClassEstado(sub_clase, estado);
+        }
+        async getByZone(zona) {
+                this.repository = new AnimalesRepository();
+                return await this.repository.getByZone(zona);
+        }
         async insertOne(body) {
                 this.repository = new AnimalesRepository();
                 return await this.repository.insertOne(body);
