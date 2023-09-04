@@ -22,7 +22,7 @@ class EmpleadosRoutes{
             limitUsuario(),
             passportHelper.authenticate("bearer", { session: false })
         );
-        this.router.get(`/all/:id?/:jornada?/:area?`,
+        this.router.get(`/all/:id?/:jornada?/:cargo?/:area_asignada?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById,

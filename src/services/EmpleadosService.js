@@ -20,9 +20,11 @@ class EmpleadosService {
                 this.repository = new EmpleadosRepository();
                 return await this.repository.getBySchedule(jornada);
         }
-        async getByCargoArea(cargo , area) {
+        async getByCargoArea(cargo, area_asignada) {
                 this.repository = new EmpleadosRepository();
-                return await this.repository.getByCargoArea(cargo , area);
+                console.log(cargo, area_asignada);
+                return await this.repository.getByCargoArea(cargo, area_asignada);
+
         }
         async insertOne(body) {
                 this.repository = new EmpleadosRepository();

@@ -39,7 +39,9 @@ class EmpleadosController{
     async getByCargoArea(req, res){
         try {
             this.service = new EmpleadosService();
-            const Empleado = await this.service.getByCargoArea[req.query.cargo,req.query.area];
+            const cargo = req.query.cargo;
+            const area_asignada = req.query.area_asignada;
+            const Empleado = await this.service.getByCargoArea(cargo, area_asignada);
             res.json(Empleado);
         } catch (error) {
             new ClientError(400, "Error al obtener los Empleados Controlador");

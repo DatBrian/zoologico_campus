@@ -83,13 +83,14 @@ class EmpleadosRepository extends Connection{
             throw error.message;
         }
     }
-    async getByCaroArea(cargo , area_asignada){
+    async getByCargoArea(cargo , area_asignada){
         try {
+            console.log(cargo, area_asignada);
             await this.connect();
             return await this.getDatabase().collection(this.entity).aggregate([{
                 $match: {
-                    cargo:cargo, 
-                    area_asignada:area_asignada
+                    "cargo":cargo, 
+                    "area_asignada":area_asignada
                 },
                 $project: {
                     "_id":0,

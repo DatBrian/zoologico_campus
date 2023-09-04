@@ -678,11 +678,11 @@ En la version <span style="color:green;">[1.0.6]</span>
   http://${config.hostname}:${config.port}/api/v1/animales/all?sub_clase=Theria&estado=Vulnerable
 ```
 
-## Empleados por Jornada (Tiempo completo, Medio tiempo)
+## Empleados por Jornada
 
 En la version <span style="color:green;">[1.0.2]</span>
 ```js
-  http://${config.hostname}:${config.port}/api/v1/empleados/all?jornada=Diurna
+  http://${config.hostname}:${config.port}/api/v1/empleados/all?jornada=Mañana
 ```
 
 ## Empleados por cargo y area (Fotógrafo, Captura de momentos)
