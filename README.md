@@ -97,12 +97,6 @@ ATLAS_USER es el usuario de la base de datos registrado en Atlas y ATLAS_PASSWOR
 
 <br><br>
 
-# INICIAR nodemon
-
-```js
-npm run start:dev
-```
-<br><br>
 
 # INSTALACION BASE DE DATOS
 
@@ -215,6 +209,14 @@ mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER}.${DB_IDENTIFIER}.mongodb.n
 
   JWT_PRIVATE_KEY= zooCampus
 ```
+
+# INICIAR nodemon
+
+```js
+npm run start:dev
+```
+<br><br>
+
 # INSTALACION COLECCIONES USUARIO Y LOGIN
 
  Vamos a crear las colecciones <span style="color:green;">usuario</span> , <span style="color:green;">login</span> , <span style="color:green;">rol</span>,para la validacion por token del portador segun la strategia [http-passport-bearer](https://www.passportjs.org/packages/passport-http-bearer/), en nuestro proyecto [passPortHelper](src/helpers/passPortHelper.js), ademas de otras pequeñas cosas, que simplemente ahi que ejecutar con el boton RUN
@@ -482,10 +484,10 @@ TODAS EN LA VERSION [1.0.0]:
 Para la Coleccion <span style="color:blue;">"animales"</span>
 ```js
    {
-    "id": "String",
     "name": "String",
     "species": "String",
     "class": "String",
+    "sub_class":"String"
     "origin": "String",
     "state": "String",
     "curiosity": "String",
