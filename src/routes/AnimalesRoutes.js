@@ -4,6 +4,8 @@ import AnimalesController from "../api/v1/AnimalesController.js";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware.js";
 import { AnimalesDTO } from "../models/dto/AnimalesDTO.js";
 import AnimalesSchema from "../models/schemas/AnimalesSchema.js"
+import passportHelper from "../helpers/passPortHelper.js"
+import { limitUsuario } from "../helpers/limit.js";
 
 class AnimalesRoutes{
     constructor(){
@@ -15,8 +17,12 @@ class AnimalesRoutes{
         this.schema = null;
     }
 
-    async initRoutes(){
-        this.router.get(`${this.path}/all/:id?/:clase?/:sub_clase?/:zona?/:estado?`,
+    async initRoutes() {
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
+        this.router.get(`/all/:id?/:clase?/:sub_clase?/:zona?/:estado?`,
         this.version({
             "1.0.0": this.controller.getAll,
             "1.0.1": this.controller.getById,
@@ -26,21 +32,21 @@ class AnimalesRoutes{
             "1.0.5": this.controller.getByZone,
             "1.0.6": this.controller.getBySubClassEstado
         }));
-        this.router.post(`${this.path}/insert`,
+        this.router.post(`/insert`,
         new ValidateDTOMiddleware(AnimalesDTO, AnimalesSchema.properties()).validate(),
         (req, res) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req,res)
             });
         });
-        this.router.put(`${this.path}/update/:id?`,
+        this.router.put(`/update/:id?`,
         new ValidateDTOMiddleware(AnimalesDTO, AnimalesSchema.properties()).validate(),
         (req, res)=>{
             this.version({
                 "1.0.0": this.controller.updateOne(req,res)
             })
         })
-        this.router.delete(`${this.path}/delete/:id?`,
+        this.router.delete(`/delete/:id?`,
         (req,res)=>{
             this.version({
                 "1.0.0": this.controller.deleteOne(req,res)
