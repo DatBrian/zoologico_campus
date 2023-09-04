@@ -26,6 +26,26 @@ class EmpleadosController{
             throw error.message;
         }
     }
+    async getBySchedule(req, res){
+        try {
+            this.service = new EmpleadosService();
+            const Empleado = await this.service.getBySchedule(req.query.jornada);
+            res.json(Empleado);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Empleados Controlador");
+            throw error.message;
+        }
+    }
+    async getByCargoArea(req, res){
+        try {
+            this.service = new EmpleadosService();
+            const Empleado = await this.service.getByCargoArea[req.query.cargo,req.query.area];
+            res.json(Empleado);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Empleados Controlador");
+            throw error.message;
+        }
+    }
     async insertOne (req, res){
         try {
             this.service = new EmpleadosService();

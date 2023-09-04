@@ -17,10 +17,12 @@ class EmpleadosRoutes{
     }
 
     initRoutes(){
-        this.router.get(`${this.path}/all/:id?`,
+        this.router.get(`${this.path}/all/:id?/:jornada?/:area?`,
         this.version({
             "1.0.0": this.controller.getAll,
-            "1.0.1": this.controller.getById
+            "1.0.1": this.controller.getById,
+            "1.0.2": this.controller.getBySchedule,
+            "1.0.3": this.controller.getByCargoArea
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(EmpleadosDTO, EmpleadosSchema.properties()).validate(),

@@ -13,10 +13,22 @@ class EventosService {
                 this.repository = new EventosRepository();
                 return await this.repository.getAll();
         }
+        async getAllMatine() {
+                this.repository = new EventosRepository();
+                return await this.repository.getAllMatine();
+        }
         async getById(id) {
                 this.repository = new EventosRepository();
                 const objectId = new ObjectId(id);
                 return await this.repository.getById(objectId);
+        }
+        async getByEstado(estado) {
+                this.repository = new EventosRepository();
+                return await this.repository.getByEstado(estado);
+        }
+        async getByHour(hora) {
+                this.repository = new EventosRepository();
+                return await this.repository.getByHour(hora);
         }
         async insertOne(body) {
                 this.repository = new EventosRepository();

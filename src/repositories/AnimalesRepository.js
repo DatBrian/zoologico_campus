@@ -112,6 +112,93 @@ class AnimalesRepository extends Connection{
             throw error.message;
         }
     }
+    async getBySubClass(sub_clase){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {sub_clase: sub_clase}
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "name":"$nombre",
+                    "species":"$especie",
+                    "class":"$clase",
+                    "sub_class":"$sub_clase",
+                    "origin":"$pais_origen",
+                    "state":"$estado",
+                    "curiosity":"$dato_curioso",
+                    "zone":"$zona",
+                    "belonging_area":"$area"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
+    async getByZone(zona){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {zona: zona}
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "name":"$nombre",
+                    "species":"$especie",
+                    "class":"$clase",
+                    "sub_class":"$sub_clase",
+                    "origin":"$pais_origen",
+                    "state":"$estado",
+                    "curiosity":"$dato_curioso",
+                    "zone":"$zona",
+                    "belonging_area":"$area"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
+    async getBySubClassEstado(sub_clase, estado){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: {
+                        sub_clase: sub_clase,
+                        estado: estado
+                    }
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "name":"$nombre",
+                    "species":"$especie",
+                    "class":"$clase",
+                    "sub_class":"$sub_clase",
+                    "origin":"$pais_origen",
+                    "state":"$estado",
+                    "curiosity":"$dato_curioso",
+                    "zone":"$zona",
+                    "belonging_area":"$area"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(400, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
     async insertOne(body){
             console.log(body);
             await this.connect();

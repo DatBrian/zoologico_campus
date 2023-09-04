@@ -118,7 +118,7 @@ db.createCollection("empleados", {
             }
         }
     }
-});
+})
 use("db_zoologico");
 db.createCollection("eventos", {
     capped: true,

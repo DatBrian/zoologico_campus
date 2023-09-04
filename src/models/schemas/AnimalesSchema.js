@@ -30,7 +30,7 @@ class AnimalesSchema {
                 description:
                     "Debe informar el campo class y este debe ser un string",
             },
-            subclase: {
+            sub_clase: {
                 bsonType: "string",
                 pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                 description:
@@ -83,7 +83,7 @@ class AnimalesSchema {
                             "nombre",
                             "especie",
                             "clase",
-                            "subclase",
+                            "sub_clase",
                             "pais_origen",
                             "estado",
                             "dato_curioso",
@@ -112,7 +112,7 @@ class AnimalesSchema {
                                 description:
                                     "Debe informar el campo class y este debe ser un string",
                             },
-                            subclase: {
+                            sub_clase: {
                                 bsonType: "string",
                                 pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]*$",
                                 description:
@@ -165,7 +165,7 @@ class AnimalesSchema {
                     nombre: "León",
                     especie: "Panthera leo",
                     clase: "Mammalia",
-                    subclase: "Theria",
+                    sub_clase: "Theria",
                     pais_origen: "África",
                     estado: "Vulnerable",
                     dato_curioso:
@@ -177,7 +177,7 @@ class AnimalesSchema {
                     nombre: "Elefante africano",
                     especie: "Loxodonta africana",
                     clase: "Mammalia",
-                    subclase: "Theria",
+                    sub_clase: "Theria",
                     pais_origen: "África",
                     estado: "Amenazado",
                     dato_curioso:
@@ -189,7 +189,7 @@ class AnimalesSchema {
                     nombre: "Tigre de Bengala",
                     especie: "Panthera tigris tigris",
                     clase: "Mammalia",
-                    subclase: "Theria",
+                    sub_clase: "Theria",
                     pais_origen: "India",
                     estado: "En peligro",
                     dato_curioso:
@@ -213,7 +213,7 @@ class AnimalesSchema {
                     nombre: "Tortuga marina",
                     especie: "Chelonia mydas",
                     clase: "Reptilia",
-                    subclase: "Diapsida",
+                    sub_clase: "Diapsida",
                     pais_origen: "Océanos del mundo",
                     estado: "En peligro crítico",
                     dato_curioso:
