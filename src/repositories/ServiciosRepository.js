@@ -60,7 +60,12 @@ class ServiciosRepository extends Connection {
     async insertOne(body) {
             await this.connect();
             await this.getDatabase().collection(this.entity).insertOne(body);
-            return `${this.entity} inserted successfully`
+            const response = {
+                status: 200,
+                message: `Inserted Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
     async updateOne(id, body) {
             await this.connect();
@@ -69,12 +74,22 @@ class ServiciosRepository extends Connection {
             }, {
                 $set: body
             });
-            return `${this.entity} updated successfully`
+            const response = {
+                status: 200,
+                message: `Updated Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
     async deleteOne(id) {
             await this.connect();
             await this.getDatabase().collection(this.entity).deleteOne({"_id": id});
-            return `${this.entity} deleted succesfully`
+            const response = {
+                status: 200,
+                message: `Deleted Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
 }
 export default ServiciosRepository;

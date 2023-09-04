@@ -112,14 +112,14 @@ class EmpleadosRepository extends Connection{
         }
     }
     async insertOne(body){
-        try {
             await this.connect();
             await this.getDatabase().collection(this.entity).insertOne(body);
-            return `${this.entity} inserted successfully`
-        } catch (error) {
-            new ClientError(304, `Error al ingresar la data en ${this.entity}`);
-            throw error.message;
-        }
+            const response = {
+                status: 200,
+                message: `Deleted Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
     async updateOne(id,body){
             await this.connect();
@@ -127,12 +127,22 @@ class EmpleadosRepository extends Connection{
                 {"_id": id},
                 {$set: body}
             );
-            return `${this.entity} updated successfully`
+            const response = {
+                status: 200,
+                message: `Updated Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
     async deleteOne(id){
             await this.connect();
             await this.getDatabase().collection(this.entity).deleteOne({"_id": id});
-            return `${this.entity} deleted succesfully`
+            const response = {
+                status: 200,
+                message: `Deleted Succesfully`,
+                path: `${this.entity} `
+            }
+            return response
     }
 }
 export default EmpleadosRepository;
