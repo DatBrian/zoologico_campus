@@ -16,11 +16,41 @@ class EventosController{
             throw error.message;
         }
     }
+    async getAllMatine(_req, res){
+        try {
+            this.service = new EventosService();
+            const EventosMatine = await this.service.getAllMatine();
+            res.json(EventosMatine);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Eventos Controlador");
+            throw error.message;
+        }
+    }
     async getById(req, res){
         try {
             this.service = new EventosService();
             const evento = await this.service.getById(req.query.id);
             res.json(evento);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Eventos Controlador");
+            throw error.message;
+        }
+    }
+    async getByHour(req, res){
+        try {
+            this.service = new EventosService();
+            const eventoHora = await this.service.getByHour(req.query.hora);
+            res.json(eventoHora);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Eventos Controlador");
+            throw error.message;
+        }
+    }
+    async getByEstado(req, res){
+        try {
+            this.service = new EventosService();
+            const eventoEstado = await this.service.getByEstado(req.query.estado);
+            res.json(eventoEstado);
         } catch (error) {
             new ClientError(400, "Error al obtener los Eventos Controlador");
             throw error.message;

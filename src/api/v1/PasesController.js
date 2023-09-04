@@ -16,10 +16,40 @@ class PasesController{
             throw error.message;
         }
     }
+    async getAllLess(_req, res){
+        try {
+            this.service = new PasesService();
+            const Pases = await this.service.getAllLess();
+            res.json(Pases);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Pases Controlador");
+            throw error.message;
+        }
+    }
+    async getAllTotal(_req, res){
+        try {
+            this.service = new PasesService();
+            const PasesTotal = await this.service.getAllTotal();
+            res.json(PasesTotal);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Pases Controlador");
+            throw error.message;
+        }
+    }
     async getById(req, res){
         try {
             this.service = new PasesService();
             const pase = await this.service.getById(req.query.id);
+            res.json(pase);
+        } catch (error) {
+            new ClientError(400, "Error al obtener los Pases Controlador");
+            throw error.message;
+        }
+    }
+    async getByTipo(req, res){
+        try {
+            this.service = new PasesService();
+            const pase = await this.service.getByTipo(req.query.tipo);
             res.json(pase);
         } catch (error) {
             new ClientError(400, "Error al obtener los Pases Controlador");

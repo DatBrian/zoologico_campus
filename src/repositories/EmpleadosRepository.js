@@ -56,6 +56,60 @@ class EmpleadosRepository extends Connection{
             throw error.message;
         }
     }
+    async getBySchedule(jornada){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([
+                {
+                    $match: { jornada: jornada }
+                },
+                {
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "complete_name":"$nombre_completo",
+                    "assigned_position":"$cargo",
+                    "address":"$direccion",
+                    "Email":"$email",
+                    "phone_number":"$telefono",
+                    "belonging_area":"$area_asignada",
+                    "zone":"$zona",
+                    "schedule":"$jornada"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(304, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
+    async getByCaroArea(cargo , area_asignada){
+        try {
+            await this.connect();
+            return await this.getDatabase().collection(this.entity).aggregate([{
+                $match: {
+                    cargo:cargo, 
+                    area_asignada:area_asignada
+                },
+                $project: {
+                    "_id":0,
+                    "id":"$_id",
+                    "complete_name":"$nombre_completo",
+                    "assigned_position":"$cargo",
+                    "address":"$direccion",
+                    "Email":"$email",
+                    "phone_number":"$telefono",
+                    "belonging_area":"$area_asignada",
+                    "zone":"$zona",
+                    "schedule":"$jornada"
+                }
+            }
+        ]).toArray();
+        } catch (error) {
+            new ClientError(304, `Error al obtener en ${this.entity}`);
+            throw error.message;
+        }
+    }
     async insertOne(body){
         try {
             await this.connect();

@@ -16,6 +16,14 @@ class EmpleadosService {
                 const objectId = new ObjectId(id);
                 return await this.repository.getById(objectId);
         }
+        async getBySchedule(jornada) {
+                this.repository = new EmpleadosRepository();
+                return await this.repository.getBySchedule(jornada);
+        }
+        async getByCargoArea(cargo , area) {
+                this.repository = new EmpleadosRepository();
+                return await this.repository.getByCargoArea(cargo , area);
+        }
         async insertOne(body) {
                 this.repository = new EmpleadosRepository();
                 return await this.repository.insertOne(body);

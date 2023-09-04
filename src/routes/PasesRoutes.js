@@ -20,7 +20,10 @@ class PasesRoutes{
         this.router.get(`${this.path}/all/:id?`,
         this.version({
             "1.0.0": this.controller.getAll,
-            "1.0.1": this.controller.getById
+            "1.0.1": this.controller.getById,
+            "1.0.2": this.controller.getByTipo,
+            "1.0.3": this.controller.getAllLess,
+            "1.0.4": this.controller.getAllTotal
         }));
         this.router.post(`${this.path}/insert`,
         new ValidateDTOMiddleware(PasesDTO, PasesSchema.properties()).validate(),
